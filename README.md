@@ -6,6 +6,7 @@
  
 * -[1/29/2022]: built out file structure
 * -[1/31/2022]: installed Radium, started building signup component
+* -[2/1/2022]: got signup functioning, mapped out the skeleton for the client, started on login component
 
 
 
