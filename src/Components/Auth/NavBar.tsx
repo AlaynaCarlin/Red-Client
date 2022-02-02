@@ -15,14 +15,31 @@ import {
     DropdownItem
 } from "reactstrap";
 
-class NavBar extends React.Component<{}, any> {
-    constructor(props: any) {
+interface tokens {
+    clickLogout: any,
+    tokenUpdate: any
+}
+
+class NavBar extends React.Component<tokens, any> {
+    constructor(props: tokens) {
         super(props)
         this.toggle = this.toggle.bind(this);
         this.state = {
-            isOpen: false
+            isOpen: false,
+            hasError: false
         };
     }
+
+    static getDerivedStateFromError(error:any) {
+        // Update state so the next render will show the fallback UI.
+        return { hasError: true };
+      }
+
+    componentDidCatch(error: any, errorInfo: any) {
+        console.log(error, errorInfo);
+    }
+
+
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
@@ -34,38 +51,24 @@ class NavBar extends React.Component<{}, any> {
     }
 
     render() {
+        if (this.state.hasError) {
+            // You can render any custom fallback UI
+            return <h1>Something went wrong.</h1>;
+          }
         return (
             <div>
                 <Navbar color="light" light expand="md">
-                    <NavbarBrand href="/">reactstrap</NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
+                    {/* <NavbarToggler onClick={this.toggle} size="sm" /> */}
+                    {/* <Collapse isOpen={this.state.isOpen} navbar> */}
                         <Nav className="ml-auto" navbar>
-                            <NavItem>
+                            <Nav>
                                 <NavLink href="/components/">Components</NavLink>
-                            </NavItem>
-                            <NavItem>
+                            </Nav>
+                            <Nav>
                                 <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-                            </NavItem>
-                            <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    Options
-                                </DropdownToggle>
-                                <DropdownMenu right>
-                                    <DropdownItem>
-                                        Option 1
-                                    </DropdownItem>
-                                    <DropdownItem>
-                                        Option 2
-                                    </DropdownItem>
-                                    <DropdownItem divider />
-                                    <DropdownItem>
-                                        Reset
-                                    </DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
+                            </Nav>
                         </Nav>
-                    </Collapse>
+                    {/* </Collapse> */}
                 </Navbar>
             </div>
         )

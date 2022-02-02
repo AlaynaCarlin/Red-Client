@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Radium from 'radium';
 import Auth from "./Components/Auth/Auth";
 import PostIndex from './Components/Posts/postIndex';
@@ -11,51 +11,51 @@ var styles = {
  
 };
 
-class App extends React.Component<{}, any> {
-  constructor(props: any) {
-    super(props) 
-      this.state = {
-        sessionToken: ''
-      }
-  }
+// interface tokenProp {
+//   sessionToken: string,
+// }
 
-  componentDidMount = () => {
-    console.log('componentDidMount');
+function App() {
+ const [sessionToken, setSessionToken] = useState('');
+
+ const storage = () => {
     if(localStorage.getItem("token")){
-      this.setState({sessionToken: localStorage.getItem("token")});
+      setSessionToken(localStorage.getItem("token") || '');
     }
-  }
+};
 
-  updateToken = (newToken: string) => {
+  const updateToken = (newToken: string) => {
     console.log('updateToken');
     localStorage.setItem("token", newToken);
-    this.setState({sessionToken: newToken});
-    console.log(this.state.sessionToken);
+    setSessionToken(newToken);
+    console.log(sessionToken);
   }
 
-  clearToken = () => {
+  const clearToken = () => {
     console.log('clearToken');
     localStorage.clear();
-    this.setState({sessionToken: ''});
+    setSessionToken("");
   }
 
-  protectedViews = () => {
-    return this.state.sessionToken === localStorage.getItem("token") ? (
-      <PostIndex token={this.state.sessionToken} />
+  const protectedViews = () => {
+    return sessionToken === localStorage.getItem("token") ? (
+      <PostIndex token={sessionToken} />
     ) : (
-      <Auth updateToken={this.updateToken}/>
+      <Auth tokenUpdate={updateToken}/>
     )
+    
   }
 
-render (){
+
   return (
     <div className="App">
-      {/* <Navbar clickLogout={this.clearToken()} updateToken={this.updateToken}/> */}
-     {this.protectedViews}
-     <Auth/>
+      <NavBar clickLogout={clearToken} tokenUpdate={updateToken}/>
+     {/* {protectedViews} */}
+     <Auth tokenUpdate={updateToken}/>
+     <PostIndex token={sessionToken}/>
     </div>
   );
 }
-}
+
 
 export default Radium(App);

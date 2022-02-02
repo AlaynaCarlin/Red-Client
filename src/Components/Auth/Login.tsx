@@ -20,7 +20,7 @@ class Login extends React.Component<{}, any> {
     render() {
         return(
             <div>
-                login
+                <h1>hey Dude!</h1>
             </div>
         )
     }

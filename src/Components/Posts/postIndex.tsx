@@ -7,10 +7,12 @@ import searchPost from "./searchPost";
 import updatePost from "./updatePost";
 import NavBar from "../Auth/NavBar";
 
-interface 
+interface token {
+    token: string
+}
 
-class PostIndex extends React.Component<{}, any> {
-    constructor(props: any){
+class PostIndex extends React.Component<token, any> {
+    constructor(props: token){
         super(props)
     }
 
@@ -19,11 +21,7 @@ class PostIndex extends React.Component<{}, any> {
     render() {
         return (
             <Container>
-                <Navbar />
-                {/* call other components according to their buttons */}
-                <Row>
-                    <Button>Submit</Button>
-                </Row>
+               <h1>Wassup!</h1>
             </Container>
         )
     }
