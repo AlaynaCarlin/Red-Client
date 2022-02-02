@@ -2,8 +2,10 @@ import React from 'react';
 import Radium from 'radium';
 import Auth from "./Components/Auth/Auth";
 import PostIndex from './Components/Posts/postIndex';
+import NavBar from './Components/Auth/NavBar';
 
 import './App.css';
+import { Navbar } from 'reactstrap';
 
 var styles = {
  
@@ -39,7 +41,7 @@ class App extends React.Component<{}, any> {
 
   protectedViews = () => {
     return this.state.sessionToken === localStorage.getItem("token") ? (
-      <PostIndex token={this.state.sessionToken}/>
+      <PostIndex token={this.state.sessionToken} />
     ) : (
       <Auth updateToken={this.updateToken}/>
     )
@@ -48,7 +50,9 @@ class App extends React.Component<{}, any> {
 render (){
   return (
     <div className="App">
+      {/* <Navbar clickLogout={this.clearToken()} updateToken={this.updateToken}/> */}
      {this.protectedViews}
+     <Auth/>
     </div>
   );
 }

@@ -1,17 +1,17 @@
 import React from "react";
 import Radium from "radium";
 
-const CommentIndex = (props: any) => {
+class CommentIndex extends React.Component<{}, any> {
 
     // ! useless?
-    
-        return(
+    render() {
+        return (
             <div>
-                
+
             </div>
         )
-        
-    
+
+    }
 }
 
 export default Radium(CommentIndex);

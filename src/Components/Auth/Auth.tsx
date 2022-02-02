@@ -2,13 +2,15 @@ import React from "react";
 import Radium from "radium";
 import Signup from "./Signup";
 
-const Auth = (props: any) => {
+class Auth extends React.Component <{},any> {
 
+    render() {
     return (
         <div>
             <Signup/>
         </div>
     )
+}
 }
 
 export default Auth;
