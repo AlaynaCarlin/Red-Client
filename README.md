@@ -8,6 +8,7 @@
 * -[1/31/2022]: installed Radium, started building signup component
 * -[2/1/2022]: got signup functioning, mapped out the skeleton for the client, started on login component
 * -[2/2/2022]: restructured app component, worked on the login and navbar components 
+* -[2/3/2022]: login functions, nav started, post fetch working
 
 
 
