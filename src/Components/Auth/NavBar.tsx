@@ -12,16 +12,17 @@ import {
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem
+    DropdownItem,
+    Button
 } from "reactstrap";
 
-interface tokens {
+interface Props {
     clickLogout: any,
     tokenUpdate: any
 }
 
-class NavBar extends React.Component<tokens, any> {
-    constructor(props: tokens) {
+class NavBar extends React.Component<Props, any> {
+    constructor(props: Props) {
         super(props)
         this.toggle = this.toggle.bind(this);
         this.state = {
@@ -40,7 +41,7 @@ class NavBar extends React.Component<tokens, any> {
     }
 
 
-    toggle() {
+    toggle = () => {
         this.setState({
             isOpen: !this.state.isOpen
         });
@@ -58,21 +59,22 @@ class NavBar extends React.Component<tokens, any> {
         return (
             <div>
                 <Navbar color="light" light expand="md">
-                    {/* <NavbarToggler onClick={this.toggle} size="sm" /> */}
-                    {/* <Collapse isOpen={this.state.isOpen} navbar> */}
+                    <NavbarBrand href="/">Class&Sass</NavbarBrand>
                         <Nav className="ml-auto" navbar>
-                            <Nav>
-                                <NavLink href="/components/">Components</NavLink>
-                            </Nav>
-                            <Nav>
-                                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-                            </Nav>
+                            <NavItem>
+                                <Button onClick={this.props.clickLogout}>Logout</Button>
+                            </NavItem>
+                            <NavItem>
+                                <Button>Post</Button>
+                            </NavItem>
+                            <NavItem>
+                                <Button>Search</Button>
+                            </NavItem>
                         </Nav>
-                    {/* </Collapse> */}
                 </Navbar>
             </div>
         )
     }
 }
 
-export default Radium(NavBar);
+export default NavBar;

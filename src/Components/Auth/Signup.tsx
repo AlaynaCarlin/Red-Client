@@ -13,8 +13,12 @@ import {
 } from "reactstrap";
 import Login from "./Login";
 
-class Signup extends React.Component<{}, any> {
-    constructor(props: any) {
+type Props = {
+    update: any
+}
+
+class Signup extends React.Component<Props, any> {
+    constructor(props: Props) {
         super(props)
         this.state = {
             username: '',
@@ -30,7 +34,7 @@ class Signup extends React.Component<{}, any> {
 
     handelSubmit = () => {
         // e.preventDefault();
-        console.log('handel submit')
+        console.log(' signup handel submit')
         let errorCode: number | string
 
         console.log(this.state.username, this.state.admin, this.state.password)
@@ -56,7 +60,8 @@ class Signup extends React.Component<{}, any> {
             })
             .then((data) => {
                 console.log(data);
-                // update token
+                console.log(this.props.update);
+                this.props.update(data.sessionToken);
             })
     };
 
@@ -71,9 +76,10 @@ class Signup extends React.Component<{}, any> {
     }
 
     render() {
-        console.log('render')
+        console.log('signup render')
         return (
             <div>
+                <h3>Signup</h3>
                 <Form inline onSubmit={e => { e.preventDefault(); this.handelSubmit() }}>
                     <FormGroup floating>
                         <Input
@@ -81,6 +87,7 @@ class Signup extends React.Component<{}, any> {
                             placeholder="Username"
                             onChange={(e) => this.setState({ username: e.target.value })}
                             value={this.state.username}
+                            name='username'
                         />
                     </FormGroup>
                     <br />
@@ -90,6 +97,7 @@ class Signup extends React.Component<{}, any> {
                             placeholder="Password"
                             onChange={(e) => this.setState({ password: e.target.value })}
                             value={this.state.password}
+                            name='password'
                         />
                         <br />
                         <FormText>
@@ -107,7 +115,7 @@ class Signup extends React.Component<{}, any> {
 
                     </FormGroup>
                     <Button type="submit" disabled={!this.validPassword()}>Submit</Button>
-                    <Button type="button" >Login</Button>
+                    {/* <Button type="button" >Login</Button> */}
 
                 </Form>
             </div>
@@ -116,4 +124,4 @@ class Signup extends React.Component<{}, any> {
 
 }
 
-export default Radium(Signup);
+export default Signup;

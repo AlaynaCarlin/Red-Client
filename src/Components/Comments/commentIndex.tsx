@@ -14,4 +14,4 @@ class CommentIndex extends React.Component<{}, any> {
     }
 }
 
-export default Radium(CommentIndex);
+export default CommentIndex;

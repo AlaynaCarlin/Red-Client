@@ -1,15 +1,26 @@
 import React from "react";
 import Radium from "radium";
 import Signup from "./Signup";
+import { Container, Row, Col } from 'reactstrap';
+import Login from "./Login";
 
-interface tokenUpdate {
-    tokenUpdate: any
+type Props = {
+    tokenUpdate: any,
 }
 
-class Auth extends React.Component<tokenUpdate, any> {
-    constructor(props: tokenUpdate) {
+type State = {
+    // updated: any
+    hasError: boolean
+
+}
+
+class Auth extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props);
-        this.state = { hasError: false };
+        this.state = { 
+            hasError: false,
+            // updated: props.tokenUpdate
+         };
     }
 
     static getDerivedStateFromError(error: any) {
@@ -24,14 +35,24 @@ class Auth extends React.Component<tokenUpdate, any> {
 
 
     render() {
+        console.log('Auth render')
         if (this.state.hasError) {
             // You can render any custom fallback UI
             return <h1>Something went wrong.</h1>;
-          }
+        }
         return (
-            <div>
-                <Signup />
-            </div>
+            <Container>
+                <Row>
+                    <Col md="6">
+                        <Signup  update = {this.props.tokenUpdate}/>
+                    </Col> 
+                    <Col md="6">
+                        <Login update = {this.props.tokenUpdate}/>
+                    </Col>
+                </Row>
+
+            </Container>
+
         )
     }
 }

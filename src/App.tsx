@@ -3,26 +3,22 @@ import Radium from 'radium';
 import Auth from "./Components/Auth/Auth";
 import PostIndex from './Components/Posts/postIndex';
 import NavBar from './Components/Auth/NavBar';
-
 import './App.css';
-import { Navbar } from 'reactstrap';
+
 
 var styles = {
  
 };
 
-// interface tokenProp {
-//   sessionToken: string,
-// }
 
 function App() {
  const [sessionToken, setSessionToken] = useState('');
 
- const storage = () => {
-    if(localStorage.getItem("token")){
-      setSessionToken(localStorage.getItem("token") || '');
-    }
-};
+useEffect(() => {
+  if (localStorage.getItem("token")) {
+    setSessionToken(localStorage.getItem("token") || '');
+  }
+}, []);
 
   const updateToken = (newToken: string) => {
     console.log('updateToken');
@@ -38,24 +34,27 @@ function App() {
   }
 
   const protectedViews = () => {
+    console.log('protected views');
+    // storage();
     return sessionToken === localStorage.getItem("token") ? (
-      <PostIndex token={sessionToken} />
+      <PostIndex token={sessionToken} clickLogout={clearToken} tokenUpdate={updateToken}/>
     ) : (
-      <Auth tokenUpdate={updateToken}/>
+      <Auth tokenUpdate={updateToken} />
     )
     
   }
 
 
+  console.log('app render')
   return (
     <div className="App">
-      <NavBar clickLogout={clearToken} tokenUpdate={updateToken}/>
-     {/* {protectedViews} */}
-     <Auth tokenUpdate={updateToken}/>
-     <PostIndex token={sessionToken}/>
+      {/* <NavBar clickLogout={clearToken} tokenUpdate={updateToken}/> */}
+     {protectedViews()}
+     {/* <Auth tokenUpdate={updateToken}/> */}
+     {/* <PostIndex token={sessionToken}/> */}
     </div>
   );
 }
 
 
-export default Radium(App);
+export default App;
