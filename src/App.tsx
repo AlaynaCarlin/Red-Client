@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import Radium from 'radium';
+import Auth from "./Components/Auth/Auth";
+import PostIndex from './Components/Posts/postIndex';
+import NavBar from './Components/Auth/NavBar';
 import './App.css';
 
+
+var styles = {
+ 
+};
+
+
 function App() {
+ const [sessionToken, setSessionToken] = useState('');
+
+useEffect(() => {
+  if (localStorage.getItem("token")) {
+    setSessionToken(localStorage.getItem("token") || '');
+  }
+}, []);
+
+  const updateToken = (newToken: string) => {
+    console.log('updateToken');
+    localStorage.setItem("token", newToken);
+    setSessionToken(newToken);
+    console.log(sessionToken);
+  }
+
+  const clearToken = () => {
+    console.log('clearToken');
+    localStorage.clear();
+    setSessionToken("");
+  }
+
+  const protectedViews = () => {
+    console.log('protected views');
+    // storage();
+    return sessionToken === localStorage.getItem("token") ? (
+      <PostIndex token={sessionToken} clickLogout={clearToken} tokenUpdate={updateToken}/>
+    ) : (
+      <Auth tokenUpdate={updateToken} />
+    )
+    
+  }
+
+
+  console.log('app render')
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <NavBar clickLogout={clearToken} tokenUpdate={updateToken}/> */}
+     {protectedViews()}
+     {/* <Auth tokenUpdate={updateToken}/> */}
+     {/* <PostIndex token={sessionToken}/> */}
     </div>
   );
 }
+
 
 export default App;
