@@ -1,7 +1,8 @@
 import React from "react";
 import Radium from "radium";
 import { Button, Container, Row, Col, } from "reactstrap";
-import createPost from "./createPost";
+import CreatePost from "./createPost";
+import PostTable from "./postTable";
 import deletePost from "./deletePost";
 import searchPost from "./searchPost";
 import updatePost from "./updatePost";
@@ -22,8 +23,35 @@ class PostIndex extends React.Component<Props, any> {
         }
     }
 
-    componentDidMount(){
-         console.log('fetch Posts', this.props.token)
+    // componentDidMount(){
+    //      console.log('fetch Posts', this.props.token)
+    //     fetch(`http://localhost:3000/post/`,{
+    //         method: 'GET',
+    //         headers: new Headers ({
+    //             'Content-Type': 'application/json',
+    //             'Authorization': `Bearer ${this.props.token}`
+    //         })
+    //     }) .then ( (res) => res.json())
+    //         .then((logData) => {
+    //             this.setState({posts: logData})
+    //             console.log(logData)
+    //         }) .catch((error) => this.setState({
+    //             error: true
+    //         }));
+    // }
+
+    // ?scrollMore = () => {
+    //  ?   scroll.scrollMore(100);
+    // ?}
+
+    // scrollMore = () => {
+    //     scroll.scrollMore(100);
+    // }
+
+  
+
+    fetchPosts = () => {
+        console.log('fetch Posts', this.props.token)
         fetch(`http://localhost:3000/post/`,{
             method: 'GET',
             headers: new Headers ({
@@ -33,14 +61,10 @@ class PostIndex extends React.Component<Props, any> {
         }) .then ( (res) => res.json())
             .then((logData) => {
                 this.setState({posts: logData})
+                console.log(logData)
             }) .catch((error) => this.setState({
                 error: true
             }));
-    }
-  
-
-    fetchPosts = () => {
-       
     }
 
     render() {
@@ -49,7 +73,14 @@ class PostIndex extends React.Component<Props, any> {
             <div>
                 <NavBar clickLogout={this.props.clickLogout} tokenUpdate={this.props.tokenUpdate} />
                 <Container>
-                    <Row></Row>
+                    <Row>
+                        <Col md='3'>
+                            <CreatePost token={this.props.token} fetch={this.fetchPosts}/>
+                        </Col>
+                        <Col md='9'>
+                            <PostTable postArray={this.state.posts} fetch={this.fetchPosts} token={this.props.token}/>
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         )
