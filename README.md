@@ -9,6 +9,7 @@
 * -[2/1/2022]: got signup functioning, mapped out the skeleton for the client, started on login component
 * -[2/2/2022]: restructured app component, worked on the login and navbar components 
 * -[2/3/2022]: login functions, nav started, post fetch working, started create post
+* -[2/4/2022]: create post finished
 
 
 
