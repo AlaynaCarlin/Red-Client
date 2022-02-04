@@ -17,14 +17,23 @@ class CreatePost extends React.Component<Props, any> {
         }
     }
 
-    componentDidMount = () => {
+    handleSubmit = () => {
         fetch('http://localhost:3000/post/post', {
             method: 'POST',
             body: JSON.stringify({post: {product: this.state.product, brand: this.state.brand, content: this.state.content}}),
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': this.props.token
+                'Authorization': `Bearer ${this.props.token}`
             })
+        }) .then((res) => res.json())
+        .then((postData) => {
+            console.log(postData);
+            this.setState({
+                product: '',
+                brand: '',
+                content: ''
+            })
+            this.props.fetch();
         })
 
     }
@@ -33,7 +42,7 @@ class CreatePost extends React.Component<Props, any> {
         return (
             <div>
                <h3>create a Post</h3>
-               <Form>
+               <Form inline onSubmit={e => { e.preventDefault(); this.handleSubmit() }}>
                    <FormGroup>
                        <Label htmlFor="product">product</Label>
                        <Input name="product" value={this.state.product} onChange={(e) => this.setState({product: e.target.value})}/>
