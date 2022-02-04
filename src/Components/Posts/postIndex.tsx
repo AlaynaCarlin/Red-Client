@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 import { Button, Container, Row, Col, } from "reactstrap";
-import createPost from "./createPost";
+import CreatePost from "./createPost";
 import deletePost from "./deletePost";
 import searchPost from "./searchPost";
 import updatePost from "./updatePost";
@@ -40,7 +40,18 @@ class PostIndex extends React.Component<Props, any> {
   
 
     fetchPosts = () => {
-       
+        fetch(`http://localhost:3000/post/`,{
+            method: 'GET',
+            headers: new Headers ({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.props.token}`
+            })
+        }) .then ( (res) => res.json())
+            .then((logData) => {
+                this.setState({posts: logData})
+            }) .catch((error) => this.setState({
+                error: true
+            }));
     }
 
     render() {
@@ -49,7 +60,14 @@ class PostIndex extends React.Component<Props, any> {
             <div>
                 <NavBar clickLogout={this.props.clickLogout} tokenUpdate={this.props.tokenUpdate} />
                 <Container>
-                    <Row></Row>
+                    <Row>
+                        <Col md='3'>
+                            <CreatePost token={this.props.token} fetch={this.fetchPosts}/>
+                        </Col>
+                        <Col md='9'>
+                            <h2>Log a workout to see a table. This will be added in later pages</h2>
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         )
