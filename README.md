@@ -10,6 +10,7 @@
 * -[2/2/2022]: restructured app component, worked on the login and navbar components 
 * -[2/3/2022]: login functions, nav started, post fetch working, started create post
 * -[2/4/2022]: create post finished
+* -[2/7/2022]: worked on displaying posts
 
 
 
