@@ -40,15 +40,9 @@ class PostIndex extends React.Component<Props, any> {
     //         }));
     // }
 
-    // ?scrollMore = () => {
-    //  ?   scroll.scrollMore(100);
-    // ?}
-
-    // scrollMore = () => {
-    //     scroll.scrollMore(100);
-    // }
-
-  
+    componentDidMount () {
+        this.fetchPosts()
+    }
 
     fetchPosts = () => {
         console.log('fetch Posts', this.props.token)
