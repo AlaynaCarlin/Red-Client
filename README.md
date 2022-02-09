@@ -11,7 +11,7 @@
 * -[2/3/2022]: login functions, nav started, post fetch working, started create post
 * -[2/4/2022]: create post finished
 * -[2/7/2022]: worked on displaying posts
-* -[2/8/2022]: display working
+* -[2/8/2022]: display working, delete posts working, update posts started
 
 
 
