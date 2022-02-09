@@ -1,41 +1,56 @@
 import React from "react";
-import Radium from "radium";
-import {Table, Button, Row, Col, List} from 'reactstrap';
+// import Radium from "radium";
+import { Table, Button, Row, Col, List } from 'reactstrap';
 import 'infinite-scroll';
-import { logRoles } from "@testing-library/react";
+// import { logRoles } from "@testing-library/react";
 
 type Props = {
-    fetch: any,
-    postArray: [],
-    token: any,
+    fetch: () => void,
+    // ! issue
+    postArray: object[],
+    token: string,
+    setPosts: (searchItem: string) => void
     // scrollMore: any
 }
 
-class PostTable extends React.Component <Props,any> {
-    constructor(props:Props){
+
+
+class PostTable extends React.Component<Props, any> {
+    constructor(props: Props) {
         super(props)
-        this.state ={
+        this.state = {
             isSpecific: false,
-            searchArr: []
+            searchArr: [],
+            value: [],
+            postProps: this.props.postArray
         }
         console.log('hit post table')
+    }
+
+    componentDidMount () {
+        // this.setState({postProps: this.props.postArray})
+        this.props.fetch()
     }
 
     postMapper = () => {
         // this.props.fetch();
         console.log('postMapper');
         console.log(this.props.postArray)
-        let posts: [] = this.state.isSpecific ? this.state.searchArr : this.props.postArray;
-        console.log(posts); 
-        return posts.map((posts: any) => {
+        console.log(this.state.postProps)
+        
+        // console.log(posts);
+        
+        return this.props.postArray.map((post: any, idx: number) =>{
             return (
-                <Col>
+                <Col key={idx}>
                     <div>
                         <List type="unstyled">
                             <ul>
-                                <li>Product: {posts.product}</li>
-                                <li>Brand: {posts.brand}</li>
-                                <li>{posts.content}</li>
+                                <li>Product: {post.product}</li>
+                                <li>Brand: {post.brand}</li>
+                                <li>{post.content}</li>
+                                <Button>update</Button>
+                                <Button>Delete</Button>
                             </ul>
                         </List>
                     </div>
@@ -45,21 +60,24 @@ class PostTable extends React.Component <Props,any> {
 
     }
 
-    componentDidMount=()=>{
-
+    componentDidUpdate = () => {
+        // this.setState({postProps: this.state.isSpecific ? this.state.searchArr : this.props.postArray}) 
     }
 
-    render(){
+    render() {
         console.log('table render');
-        return(
+        return (
             <div>
                 <h3>Recent Reviews</h3>
-                <hr/>
-            
-                <Row xs="2" md="3" xl="6" style={{ overflow: "scroll", height: "60vh" }}>
-                {this.postMapper()}
+                <hr />
+                <ul>
+                    {/* <li>{this.props.postArray[1].product}</li> */}
+                </ul>
+
+                <Row xs="2" md="3" xl="6" style={{ overflow: "scroll", height: "100vh" }}>
+                    {this.postMapper()}
                 </Row>
-            
+
             </div>
         )
     }
