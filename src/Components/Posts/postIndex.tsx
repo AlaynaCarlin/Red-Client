@@ -3,7 +3,6 @@ import Radium from "radium";
 import { Button, Container, Row, Col, } from "reactstrap";
 import CreatePost from "./createPost";
 import PostTable from "./postTable";
-import deletePost from "./deletePost";
 import searchPost from "./searchPost";
 import updatePost from "./updatePost";
 import NavBar from "../Auth/NavBar";
@@ -40,15 +39,9 @@ class PostIndex extends React.Component<Props, any> {
     //         }));
     // }
 
-    // ?scrollMore = () => {
-    //  ?   scroll.scrollMore(100);
-    // ?}
-
-    // scrollMore = () => {
-    //     scroll.scrollMore(100);
-    // }
-
-  
+    componentDidMount () {
+        this.fetchPosts()
+    }
 
     fetchPosts = () => {
         console.log('fetch Posts', this.props.token)
@@ -60,11 +53,16 @@ class PostIndex extends React.Component<Props, any> {
             })
         }) .then ( (res) => res.json())
             .then((logData) => {
-                this.setState({posts: logData})
-                console.log(logData)
+                this.setState({posts: logData.posts})
+                console.log(logData.posts)
             }) .catch((error) => this.setState({
                 error: true
             }));
+    }
+
+    setPosts = (searchItem: string) => {
+        let filtered = this.state.posts.filter((i:any) => i.product.includes(searchItem))
+        this.setState({posts: filtered})
     }
 
     render() {
@@ -78,7 +76,7 @@ class PostIndex extends React.Component<Props, any> {
                             <CreatePost token={this.props.token} fetch={this.fetchPosts}/>
                         </Col>
                         <Col md='9'>
-                            <PostTable postArray={this.state.posts} fetch={this.fetchPosts} token={this.props.token}/>
+                            <PostTable setPosts={this.setPosts} postArray={this.state.posts} fetch={this.fetchPosts} token={this.props.token}/>
                         </Col>
                     </Row>
                 </Container>
