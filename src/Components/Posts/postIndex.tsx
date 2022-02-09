@@ -54,9 +54,9 @@ class PostIndex extends React.Component<Props, any> {
 
     editUpdatePost = (post: Posts) => {
         this.setState({
-            workoutToUpdate: post,
+            postToUpdate: post,
         })
-        console.log(post);
+        console.log(this.state.postToUpdate);
     }
 
     updateOn = () => {
@@ -90,7 +90,7 @@ class PostIndex extends React.Component<Props, any> {
                             <PostTable setPosts={this.setPosts} postArray={this.state.posts} fetch={this.fetchPosts} token={this.props.token} editUpdatePost={this.editUpdatePost} updateOn={this.updateOn}/>
                         </Col>
                     </Row>
-                    {this.state.updateActive ? <UpdatePost postToUpdate={this.state.postToUpdate} updateOff={this.state.updateOff} token={this.props.token} fetch={this.fetchPosts}/> : <></>}
+                    {this.state.updateActive ? <UpdatePost postToUpdate={this.state.postToUpdate} updateOff={this.updateOff} token={this.props.token} fetch={this.fetchPosts}/> : <></>}
                 </Container>
             </div>
         )
