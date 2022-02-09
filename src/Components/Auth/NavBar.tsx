@@ -70,6 +70,9 @@ class NavBar extends React.Component<Props, any> {
                             <NavItem>
                                 <Button>Search</Button>
                             </NavItem>
+                            <NavItem>
+                                <Button>Users</Button>
+                            </NavItem>
                         </Nav>
                 </Navbar>
             </div>

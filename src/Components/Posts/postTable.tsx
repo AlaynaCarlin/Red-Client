@@ -2,6 +2,7 @@ import React from "react";
 // import Radium from "radium";
 import { Table, Button, Row, Col, List } from 'reactstrap';
 import 'infinite-scroll';
+import { Posts } from "./postIndex";
 // import { logRoles } from "@testing-library/react";
 
 type Props = {
@@ -9,7 +10,9 @@ type Props = {
     // ! issue
     postArray: object[],
     token: string,
-    setPosts: (searchItem: string) => void
+    setPosts: (searchItem: string) => void,
+    editUpdatePost: (post: Posts) => void,
+    updateOn: () => void
     // scrollMore: any
 }
 
@@ -27,8 +30,19 @@ class PostTable extends React.Component<Props, any> {
         console.log('hit post table')
     }
 
+    deletePost = (post: Posts) => {
+        console.log(post);
+        fetch(`http://localhost:3000/post/delete/${post.id}`,{
+            method: 'DELETE',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.props.token}`
+            })
+        })
+        .then(() => this.props.fetch())
+    }
+
     componentDidMount () {
-        // this.setState({postProps: this.props.postArray})
         this.props.fetch()
     }
 
@@ -36,9 +50,7 @@ class PostTable extends React.Component<Props, any> {
         // this.props.fetch();
         console.log('postMapper');
         console.log(this.props.postArray)
-        console.log(this.state.postProps)
-        
-        // console.log(posts);
+        // console.log(this.state.postProps)
         
         return this.props.postArray.map((post: any, idx: number) =>{
             return (
@@ -49,8 +61,8 @@ class PostTable extends React.Component<Props, any> {
                                 <li>Product: {post.product}</li>
                                 <li>Brand: {post.brand}</li>
                                 <li>{post.content}</li>
-                                <Button>update</Button>
-                                <Button>Delete</Button>
+                                <Button onClick={() => {this.props.editUpdatePost(post); this.props.updateOn()}}>update</Button>
+                                <Button onClick={() => {this.deletePost(post)}}>Delete</Button>
                             </ul>
                         </List>
                     </div>
@@ -60,9 +72,6 @@ class PostTable extends React.Component<Props, any> {
 
     }
 
-    componentDidUpdate = () => {
-        // this.setState({postProps: this.state.isSpecific ? this.state.searchArr : this.props.postArray}) 
-    }
 
     render() {
         console.log('table render');
@@ -70,9 +79,6 @@ class PostTable extends React.Component<Props, any> {
             <div>
                 <h3>Recent Reviews</h3>
                 <hr />
-                <ul>
-                    {/* <li>{this.props.postArray[1].product}</li> */}
-                </ul>
 
                 <Row xs="2" md="3" xl="6" style={{ overflow: "scroll", height: "100vh" }}>
                     {this.postMapper()}

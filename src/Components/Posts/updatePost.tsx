@@ -1,22 +1,68 @@
 import React from "react";
-import Radium from "radium";
+// import Radium from "radium";
+import {Posts} from "./postIndex"
+import {Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, Button} from 'reactstrap';
 
-class UpdatePost extends React.Component <{},any> {
-    constructor(props:any){
+type Props = {
+    postToUpdate: Posts,
+    updateOff: ()=>void,
+    token: string,
+    fetch: ()=>void
+
+}
+
+class UpdatePost extends React.Component <Props,any> {
+    constructor(props:Props){
         super(props)
+        this.state = {
+            editProduct: '',
+            editBrand: '',
+            editContent: ''
+        }
     }
 
     componentDidMount=()=>{
 
     }
 
+    postUpdate = () => {
+        fetch(`http://localhost:3000/post/update/${this.props.postToUpdate.id}`, {
+            method: 'PUT',
+            body: JSON.stringify({post: {product: this.state.editProduct, brand: this.state.editBrand, content: this.state.editContent}}),
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.props.token}`
+            })
+        }) .then((res) => {
+            this.props.fetch();
+            this.props.updateOff();
+        })
+    }
+
     render(){
         return(
-            <div>
-                Update Posts
-            </div>
+            <Modal isOpen={true}>
+                <ModalHeader>Update your Post</ModalHeader>
+                <ModalBody>
+                    <Form inline onSubmit={e => {e.preventDefault(); this.postUpdate() }}>
+                        <FormGroup>
+                            <Label htmlFor="product">Edit Product:</Label>
+                            <Input name="product" value={this.state.editProduct} onChange={(e) => this.setState({editProduct: e.target.value})}/>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label htmlFor="brand">Edit Brand:</Label>
+                            <Input name="brand" value={this.state.editBrand} onChange={(e) => this.setState({editBrand: e.target.value})} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label htmlFor="content">Edit Content:</Label>
+                            <Input name="content" value={this.state.editContent} onChange={(e) => this.setState({editContent: e.target.value})} />
+                        </FormGroup>
+                        <Button type="submit">Update your Post!</Button>
+                    </Form>
+                </ModalBody>
+            </Modal>
         )
     }
 }
 
-export default Radium(UpdatePost);
+export default UpdatePost;
