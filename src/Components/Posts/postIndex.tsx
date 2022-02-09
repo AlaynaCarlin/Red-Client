@@ -13,6 +13,13 @@ interface Props {
     tokenUpdate: any
 }
 
+export interface Posts {
+    id: string,
+    product: string,
+    brand: string,
+    content: string,
+}
+
 class PostIndex extends React.Component<Props, any> {
     constructor(props: Props) {
         super(props)
@@ -61,7 +68,7 @@ class PostIndex extends React.Component<Props, any> {
     }
 
     setPosts = (searchItem: string) => {
-        let filtered = this.state.posts.filter((i:any) => i.product.includes(searchItem))
+        let filtered = this.state.posts.filter((i:Posts) => i.product.includes(searchItem))
         this.setState({posts: filtered})
     }
 
