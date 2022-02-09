@@ -1,9 +1,23 @@
 import React from "react";
-import Radium from "radium";
+// import Radium from "radium";
+import {Posts} from "./postIndex"
 
-class UpdatePost extends React.Component <{},any> {
-    constructor(props:any){
+type Props = {
+    postToUpdate: Posts,
+    updateOff: any,
+    token: string,
+    fetch: ()=>void
+
+}
+
+class UpdatePost extends React.Component <Props,any> {
+    constructor(props:Props){
         super(props)
+        this.state = {
+            editProduct: '',
+            editBrand: '',
+            editContent: ''
+        }
     }
 
     componentDidMount=()=>{
@@ -19,4 +33,4 @@ class UpdatePost extends React.Component <{},any> {
     }
 }
 
-export default Radium(UpdatePost);
+export default UpdatePost;

@@ -10,7 +10,9 @@ type Props = {
     // ! issue
     postArray: object[],
     token: string,
-    setPosts: (searchItem: string) => void
+    setPosts: (searchItem: string) => void,
+    editUpdatePost: (post: Posts) => void,
+    updateOn: () => void
     // scrollMore: any
 }
 
@@ -59,7 +61,7 @@ class PostTable extends React.Component<Props, any> {
                                 <li>Product: {post.product}</li>
                                 <li>Brand: {post.brand}</li>
                                 <li>{post.content}</li>
-                                <Button>update</Button>
+                                <Button onClick={() => {this.props.editUpdatePost(post); this.props.updateOn()}}>update</Button>
                                 <Button onClick={() => {this.deletePost(post)}}>Delete</Button>
                             </ul>
                         </List>
