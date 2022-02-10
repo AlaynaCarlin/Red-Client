@@ -12,37 +12,38 @@ type Props = {
     token: string,
     setPosts: (searchItem: string) => void,
     editUpdatePost: (post: Posts) => void,
-    updateOn: () => void
+    updateOn: () => void,
+    fetchComments: ()=>void
     // scrollMore: any
 }
 
+type State = {
+    isSpecific: false,
+    searchArr: [],
+    value: [],
+    postProps: {},
+}
 
-
-class PostTable extends React.Component<Props, any> {
+class PostTable extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
-        this.state = {
-            isSpecific: false,
-            searchArr: [],
-            value: [],
-            postProps: this.props.postArray
-        }
-        console.log('hit post table')
+        this.setState({postProps: this.props.postArray})
+        // console.log('hit post table')
     }
 
     deletePost = (post: Posts) => {
         console.log(post);
-        fetch(`http://localhost:3000/post/delete/${post.id}`,{
+        fetch(`http://localhost:3000/post/delete/${post.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${this.props.token}`
             })
         })
-        .then(() => this.props.fetch())
+            .then(() => this.props.fetch())
     }
 
-    componentDidMount () {
+    componentDidMount() {
         this.props.fetch()
     }
 
@@ -51,8 +52,8 @@ class PostTable extends React.Component<Props, any> {
         console.log('postMapper');
         console.log(this.props.postArray)
         // console.log(this.state.postProps)
-        
-        return this.props.postArray.map((post: any, idx: number) =>{
+
+        return this.props.postArray.map((post: any, idx: number) => {
             return (
                 <Col key={idx}>
                     <div>
@@ -61,8 +62,9 @@ class PostTable extends React.Component<Props, any> {
                                 <li>Product: {post.product}</li>
                                 <li>Brand: {post.brand}</li>
                                 <li>{post.content}</li>
-                                <Button onClick={() => {this.props.editUpdatePost(post); this.props.updateOn()}}>update</Button>
-                                <Button onClick={() => {this.deletePost(post)}}>Delete</Button>
+                                <Button onClick={() => { this.props.editUpdatePost(post); this.props.updateOn() }}>update</Button>
+                                <Button onClick={() => { this.deletePost(post) }}>Delete</Button>
+                                <Button onClick={() => { this.props.fetchComments() }}>Comments</Button>
                             </ul>
                         </List>
                     </div>

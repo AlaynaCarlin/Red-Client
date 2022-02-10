@@ -1,16 +1,22 @@
 import React from "react";
 import Radium from "radium";
-import { Button, Container, Row, Col, } from "reactstrap";
+import {Container, Row, Col, } from "reactstrap";
 import CreatePost from "./createPost";
 import PostTable from "./postTable";
 import searchPost from "./searchPost";
 import UpdatePost from "./updatePost";
 import NavBar from "../Auth/NavBar";
+import CommentTable from "../Comments/commentTable";
+import UpdateComment from "../Comments/updateComment";
+import WriteComment from "../Comments/writeComment";
 
-interface Props {
+type Props = {
     token: string,
     clickLogout: any,
     tokenUpdate: any
+}
+
+type State = {
 }
 
 export interface Posts {
@@ -20,17 +26,42 @@ export interface Posts {
     content: string,
 }
 
-class PostIndex extends React.Component<Props, any> {
+// ! trying to set the state variables for the posts and comments. run into trouble when I try to make it an interface to get rid of any and when I try to use Posts in this.state
+
+class PostIndex extends React.Component<Props,any> {
     constructor(props: Props) {
         super(props)
-        this.state={
+        this.state = {
             posts: [],
             error: false,
             updateActive: false,
-            postToUpdate: {}
+            postToUpdate: {},
+            commentPost: {},
+            comments: [],
         }
+        // this.setState({
+            // ! all the troublesome variables in here
+        // })
     }
 
+
+    fetchComments = () => {
+        fetch(`http://localhost:3000/post/${this.state.post.id}`, {
+            method: 'GET',
+            headers: new Headers ({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.props.token}`
+            })
+        }) .then ((res) => res.json())
+        .then((logData) => {
+            this.setState({
+                post: logData.post,
+                comments: logData.comments
+            })
+        }) .catch((error) => console.log(error));
+    }
+
+    // ! divider ****************************************
     componentDidMount () {
         this.fetchPosts()
     }
@@ -87,10 +118,23 @@ class PostIndex extends React.Component<Props, any> {
                             <CreatePost token={this.props.token} fetch={this.fetchPosts}/>
                         </Col>
                         <Col md='9'>
-                            <PostTable setPosts={this.setPosts} postArray={this.state.posts} fetch={this.fetchPosts} token={this.props.token} editUpdatePost={this.editUpdatePost} updateOn={this.updateOn}/>
+                            <PostTable 
+                            setPosts={this.setPosts} 
+                            postArray={this.state.posts} 
+                            fetch={this.fetchPosts} 
+                            token={this.props.token} 
+                            editUpdatePost={this.editUpdatePost} 
+                            updateOn={this.updateOn}
+                            fetchComments={this.fetchComments}/>
                         </Col>
                     </Row>
-                    {this.state.updateActive ? <UpdatePost postToUpdate={this.state.postToUpdate} updateOff={this.updateOff} token={this.props.token} fetch={this.fetchPosts}/> : <></>}
+                    {this.state.updateActive ? 
+                    <UpdatePost 
+                    postToUpdate={this.state.postToUpdate} 
+                    updateOff={this.updateOff} 
+                    token={this.props.token} 
+                    fetch={this.fetchPosts}/> : 
+                    <></>}
                 </Container>
             </div>
         )

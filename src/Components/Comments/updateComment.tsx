@@ -20,4 +20,4 @@ class UpdateComment extends React.Component <{},any> {
     }
 }
 
-export default Radium(UpdateComment);
+export default UpdateComment;

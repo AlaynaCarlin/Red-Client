@@ -22,4 +22,4 @@ class WriteComment extends React.Component <{},any> {
     }
 }
 
-export default Radium(WriteComment);
+export default WriteComment;
