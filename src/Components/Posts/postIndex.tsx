@@ -63,7 +63,7 @@ class PostIndex extends React.Component<Props, State> {
             //     content: ''
             // }
         };
-        console.log(this.state.posts)
+        // console.log(this.state.posts)
     }
 
 
@@ -74,7 +74,7 @@ class PostIndex extends React.Component<Props, State> {
     }
 
     fetchPosts = () => {
-        console.log('fetch Posts', this.props.token)
+        // console.log('fetch Posts', this.props.token)
         fetch(`http://localhost:3000/post/`, {
             method: 'GET',
             headers: new Headers({
@@ -84,7 +84,7 @@ class PostIndex extends React.Component<Props, State> {
         }).then((res) => res.json())
             .then((logData) => {
                 this.setState({ posts: logData.posts })
-                console.log(logData.posts)
+                // console.log(logData.posts)
             }).catch((error) => this.setState({
                 error: true
             }));

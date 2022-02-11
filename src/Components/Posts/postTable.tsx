@@ -51,7 +51,7 @@ class PostTable extends React.Component<Props, State> {
     postMapper = () => {
         // this.props.fetch();
         console.log('postMapper');
-        console.log(this.props.postArray)
+        // console.log(this.props.postArray)
         // console.log(this.state.postProps)
 
         return this.props.postArray.map((post: any, idx: number) => {
