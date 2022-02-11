@@ -13,6 +13,6 @@
 * -[2/7/2022]: worked on displaying posts
 * -[2/8/2022]: display working, delete posts working, update posts started
 * -[2/9/2022]: update posts working, started working on comment crud
-
+* -[2/10/2022]: worked on comment table 
 
 
