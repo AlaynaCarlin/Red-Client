@@ -4,10 +4,16 @@ import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 
 type Props = {
     token: string,
-    fetch: any
+    fetch: ()=>void
 }
 
-class CreatePost extends React.Component<Props, any> {
+type State = {
+    product: string,
+    brand: string,
+    content: string
+}
+
+class CreatePost extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
         this.state = {

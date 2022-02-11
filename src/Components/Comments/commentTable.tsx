@@ -1,6 +1,7 @@
 import React from "react";
 import { Posts } from "../Posts/postIndex";
 import { Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, Button, Col } from "reactstrap";
+import WriteComment from "./writeComment";
 
 type Props = {
     commentPost: Posts,
@@ -9,8 +10,13 @@ type Props = {
 
 }
 
+export interface Comments {
+    id: string,
+    content: string
+}
+
 type State = {
-    comments: [],
+    comments: Comments[],
     post: Posts
 }
 
@@ -55,6 +61,17 @@ class CommentTable extends React.Component<Props, State> {
         this.props.commentOff();
     }
 
+    commentMapper = () => {
+        console.log('comment mapper')
+        return this.state.comments.map((comment: any, idx: number) => {
+            return (
+                <Col key={idx}>
+                    <p>{comment.content}</p>
+                </Col>
+            )
+        }
+        )}
+
     render() {
         console.log('render comments')
         return (
@@ -62,7 +79,10 @@ class CommentTable extends React.Component<Props, State> {
                 <Modal isOpen={true}>
                     <ModalHeader>{this.state.post.product} - {this.state.post.brand} <br/> {this.state.post.content}</ModalHeader>
                     <ModalBody>
-                        <Col>{this.state.comments}</Col>
+                        <Col>{this.commentMapper()}</Col>
+                        <Label>Write a Comment</Label>
+                        <WriteComment token={this.props.token} fetchComments={this.fetchComments} post={this.state.post}/>
+                        <Button onClick={this.close}>close</Button>
                     </ModalBody>
                 </Modal>
             </>
