@@ -13,7 +13,8 @@ type Props = {
     setPosts: (searchItem: string) => void,
     editUpdatePost: (post: Posts) => void,
     updateOn: () => void,
-    fetchComments: ()=>void
+    setCommentPost: (post: Posts)=>void,
+    commentOn: ()=>void
     // scrollMore: any
 }
 
@@ -64,7 +65,7 @@ class PostTable extends React.Component<Props, State> {
                                 <li>{post.content}</li>
                                 <Button onClick={() => { this.props.editUpdatePost(post); this.props.updateOn() }}>update</Button>
                                 <Button onClick={() => { this.deletePost(post) }}>Delete</Button>
-                                <Button onClick={() => { this.props.fetchComments() }}>Comments</Button>
+                                <Button onClick={() => { this.props.setCommentPost(post); this.props.commentOn() }}>Comments</Button>
                             </ul>
                         </List>
                     </div>

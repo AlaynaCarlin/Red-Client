@@ -1,6 +1,10 @@
 import React from "react";
 import Radium from "radium";
 
+type Props = {
+    
+}
+
 class WriteComment extends React.Component <{},any> {
     constructor(props:any){
         super(props)
