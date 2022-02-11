@@ -11,7 +11,13 @@ type Props = {
 
 }
 
-class UpdatePost extends React.Component <Props,any> {
+type State = {
+    editProduct: string,
+    editBrand: string,
+    editContent: string
+}
+
+class UpdatePost extends React.Component <Props,State> {
     constructor(props:Props){
         super(props)
         this.state = {
@@ -39,6 +45,10 @@ class UpdatePost extends React.Component <Props,any> {
         })
     }
 
+    close = () => {
+        this.props.updateOff();
+    }
+
     render(){
         return(
             <Modal isOpen={true}>
@@ -58,6 +68,7 @@ class UpdatePost extends React.Component <Props,any> {
                             <Input name="content" value={this.state.editContent} onChange={(e) => this.setState({editContent: e.target.value})} />
                         </FormGroup>
                         <Button type="submit">Update your Post!</Button>
+                        <Button type="reset" onClick={this.close}>close</Button>
                     </Form>
                 </ModalBody>
             </Modal>
