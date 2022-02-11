@@ -14,6 +14,6 @@
 * -[2/8/2022]: display working, delete posts working, update posts started
 * -[2/9/2022]: update posts working, started working on comment crud
 * -[2/10/2022]: worked on comment table 
-* -[2/11/2022]: comment modal is showing
+* -[2/11/2022]: comment modal is displaying correctly, write comments functions
 
 
