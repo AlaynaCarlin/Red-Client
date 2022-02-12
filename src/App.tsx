@@ -37,7 +37,7 @@ useEffect(() => {
     console.log('protected views');
     // storage();
     return sessionToken === localStorage.getItem("token") ? (
-      <PostIndex token={sessionToken} clickLogout={clearToken} tokenUpdate={updateToken}/>
+      <NavBar token={sessionToken} clickLogout={clearToken} tokenUpdate={updateToken}/>
     ) : (
       <Auth tokenUpdate={updateToken} />
     )

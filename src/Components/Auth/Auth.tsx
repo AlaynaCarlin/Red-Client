@@ -5,7 +5,7 @@ import { Container, Row, Col } from 'reactstrap';
 import Login from "./Login";
 
 type Props = {
-    tokenUpdate: any,
+    tokenUpdate: (newToken: string)=>void,
 }
 
 type State = {
