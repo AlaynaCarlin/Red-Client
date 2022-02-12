@@ -1,5 +1,6 @@
 import React from "react";
 import Radium from "radium";
+import APIURL from "../../helpers/environment";
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 
 type Props = {
@@ -25,7 +26,7 @@ class CreatePost extends React.Component<Props, State> {
     }
 
     handleSubmit = () => {
-        fetch('http://localhost:3000/post/post', {
+        fetch(`${APIURL}/post/post`, {
             method: 'POST',
             body: JSON.stringify({post: {product: this.state.product, brand: this.state.brand, content: this.state.content}}),
             headers: new Headers({
@@ -49,6 +50,7 @@ class CreatePost extends React.Component<Props, State> {
     render() {
         return (
             <div>
+                {/* important stuff */}
                <h3>create a Post</h3>
                <Form inline onSubmit={e => { e.preventDefault(); this.handleSubmit() }}>
                    <FormGroup>

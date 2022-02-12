@@ -1,5 +1,6 @@
 import React from "react";
 import Radium from "radium";
+import APIURL from "../../helpers/environment";
 import {
     Form,
     FormGroup,
@@ -35,7 +36,7 @@ class Login extends React.Component<Props, State> {
     handleSubmit = () => {
         console.log('login handle')
         console.log(this.state.username, this.state.password)
-        fetch('http://localhost:3000/user/login', {
+        fetch(`${APIURL}/user/login`, {
             method: 'POST',
             body: JSON.stringify({ users: { username: this.state.username, password: this.state.password } }),
             headers: new Headers({

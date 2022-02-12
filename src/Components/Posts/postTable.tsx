@@ -1,5 +1,6 @@
 import React from "react";
 // import Radium from "radium";
+import APIURL from "../../helpers/environment";
 import { Table, Button, Row, Col, List } from 'reactstrap';
 import 'infinite-scroll';
 import { Posts } from "./postIndex";
@@ -34,7 +35,7 @@ class PostTable extends React.Component<Props, State> {
 
     deletePost = (post: Posts) => {
         console.log(post);
-        fetch(`http://localhost:3000/post/delete/${post.id}`, {
+        fetch(`${APIURL}/post/delete/${post.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',

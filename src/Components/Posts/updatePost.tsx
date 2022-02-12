@@ -1,5 +1,6 @@
 import React from "react";
 // import Radium from "radium";
+import APIURL from "../../helpers/environment";
 import {Posts} from "./postIndex"
 import {Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, Button} from 'reactstrap';
 
@@ -32,7 +33,7 @@ class UpdatePost extends React.Component <Props,State> {
     }
 
     postUpdate = () => {
-        fetch(`http://localhost:3000/post/update/${this.props.postToUpdate.id}`, {
+        fetch(`${APIURL}/post/update/${this.props.postToUpdate.id}`, {
             method: 'PUT',
             body: JSON.stringify({post: {product: this.state.editProduct, brand: this.state.editBrand, content: this.state.editContent}}),
             headers: new Headers({

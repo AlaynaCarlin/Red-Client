@@ -1,14 +1,13 @@
 import React from "react";
 import Radium from "radium";
+import APIURL from "../../helpers/environment";
 import { Container, Row, Col, } from "reactstrap";
 import CreatePost from "./createPost";
 import PostTable from "./postTable";
 import searchPost from "./searchPost";
 import UpdatePost from "./updatePost";
-import NavBar from "../Auth/NavBar";
 import CommentTable from "../Comments/commentTable";
-import UpdateComment from "../Comments/updateComment";
-import WriteComment from "../Comments/writeComment";
+
 
 type Props = {
     token: string,
@@ -72,7 +71,7 @@ class PostIndex extends React.Component<Props, State> {
 
     fetchPosts = () => {
         // console.log('fetch Posts', this.props.token)
-        fetch(`http://localhost:3000/post/`, {
+        fetch(`${APIURL}/post/`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
