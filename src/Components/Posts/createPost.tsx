@@ -4,7 +4,8 @@ import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 
 type Props = {
     token: string,
-    fetch: ()=>void
+    fetch: ()=>void,
+    postOff: ()=>void
 }
 
 type State = {
@@ -40,6 +41,7 @@ class CreatePost extends React.Component<Props, State> {
                 content: ''
             })
             this.props.fetch();
+            this.props.postOff();
         })
 
     }

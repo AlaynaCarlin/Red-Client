@@ -14,10 +14,17 @@ import {
 import Login from "./Login";
 
 type Props = {
-    update: any
+    update: (newToken: string)=>void
 }
 
-class Signup extends React.Component<Props, any> {
+type State = {
+    username: string,
+    password: string,
+    admin: boolean,
+    message: string
+}
+
+class Signup extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
         this.state = {

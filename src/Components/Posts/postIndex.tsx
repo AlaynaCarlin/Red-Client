@@ -12,8 +12,11 @@ import WriteComment from "../Comments/writeComment";
 
 type Props = {
     token: string,
-    clickLogout: any,
-    tokenUpdate: any
+    postOn:()=>void,
+    postOff:()=>void,
+    postActive: boolean
+    // clickLogout: ()=>void,
+    // tokenUpdate: ()=>void
 }
 
 /*  I need my variables in an interface so that I have access to the Posts interface,
@@ -24,9 +27,8 @@ type State = {
     updateActive: boolean,
     postToUpdate: Posts,
     commentPost: Posts,
-    commentActive: boolean
-    // post: Posts
-    // needs type of Posts
+    commentActive: boolean,
+    
 }
 
 export interface Posts {
@@ -56,12 +58,7 @@ class PostIndex extends React.Component<Props, State> {
                 content: ''
             },
             commentActive: false,
-            // post: {
-            //     id: '',
-            //     product: '',
-            //     brand: '',
-            //     content: ''
-            // }
+            
         };
         // console.log(this.state.posts)
     }
@@ -111,6 +108,7 @@ class PostIndex extends React.Component<Props, State> {
             updateActive: false
         })
     }
+    // !======
 
     setCommentPost = (post: Posts) => {
         this.setState({
@@ -126,9 +124,14 @@ class PostIndex extends React.Component<Props, State> {
 
     commentOff = () => {
         this.setState({
-            commentActive:false
+            commentActive: false
         })
     }
+    // !=======
+
+    
+   
+   
 
     setPosts = (searchItem: string) => {
         let filtered = this.state.posts.filter((i: Posts) => i.product.includes(searchItem))
@@ -139,11 +142,19 @@ class PostIndex extends React.Component<Props, State> {
         console.log('postIndex render');
         return (
             <div>
-                <NavBar clickLogout={this.props.clickLogout} tokenUpdate={this.props.tokenUpdate} />
+                {/* <NavBar clickLogout={this.props.clickLogout}
+                    tokenUpdate={this.props.tokenUpdate}
+                    postOn={this.postOn} /> */}
                 <Container>
                     <Row>
                         <Col md='3'>
-                            <CreatePost token={this.props.token} fetch={this.fetchPosts} />
+                            {this.props.postActive ?
+                                <CreatePost
+                                    token={this.props.token}
+                                    fetch={this.fetchPosts} 
+                                    postOff={this.props.postOff}/> :
+                                <></>
+                            }
                         </Col>
                         <Col md='9'>
                             <PostTable
@@ -169,8 +180,8 @@ class PostIndex extends React.Component<Props, State> {
                         <CommentTable
                             commentPost={this.state.commentPost}
                             commentOff={this.commentOff}
-                            token={this.props.token}/> :
-                            <></>}
+                            token={this.props.token} /> :
+                        <></>}
                 </Container>
             </div>
         )

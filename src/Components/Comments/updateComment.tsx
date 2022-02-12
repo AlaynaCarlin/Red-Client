@@ -14,7 +14,7 @@ type State = {
     content: string
 }
 
-class UpdateComment extends React.Component<Props, any> {
+class UpdateComment extends React.Component<Props, State> {
     constructor(props: any) {
         super(props)
         this.state = {

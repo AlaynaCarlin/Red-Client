@@ -88,7 +88,7 @@ class CommentTable extends React.Component<Props, State> {
             return (
                 <Col key={idx}>
                     <p>{comment.content}</p>
-                    <Button onClick={() => this.deleteComment}>delete</Button>
+                    <Button onClick={() => this.deleteComment(comment)}>delete</Button>
                     <Button onClick={() => {this.editUpdateComment(comment); this.updateOn()}}>edit</Button>
                 </Col>
             )

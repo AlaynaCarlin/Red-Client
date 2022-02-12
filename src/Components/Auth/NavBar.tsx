@@ -1,6 +1,8 @@
 import React from "react";
 import Radium from "radium";
 import Login from "./Login";
+import Users from "./Users";
+import PostIndex from "../Posts/postIndex";
 import {
     Collapse,
     Navbar,
@@ -18,16 +20,27 @@ import {
 
 interface Props {
     clickLogout: any,
-    tokenUpdate: any
+    tokenUpdate: any,
+    token: string
 }
 
-class NavBar extends React.Component<Props, any> {
+type State = {
+    isOpen: boolean,
+    hasError: boolean,
+    getUsers: boolean,
+    postActive: boolean,
+    // postOn: ()=>void,
+}
+
+class NavBar extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
         this.toggle = this.toggle.bind(this);
         this.state = {
             isOpen: false,
-            hasError: false
+            hasError: false,
+            getUsers: false,
+            postActive: false
         };
     }
 
@@ -51,6 +64,30 @@ class NavBar extends React.Component<Props, any> {
 
     }
 
+    usersOn = () => {
+        this.setState({
+            getUsers: true
+        })
+    }
+
+    usersOff = () => {
+        this.setState({
+            getUsers: false
+        })
+    }
+    // !======
+    postOn = () => {
+        this.setState({
+            postActive: true
+        })
+    }
+
+    postOff = () => {
+        this.setState({
+            postActive: false
+        })
+    }
+
     render() {
         if (this.state.hasError) {
             // You can render any custom fallback UI
@@ -65,16 +102,26 @@ class NavBar extends React.Component<Props, any> {
                                 <Button onClick={this.props.clickLogout}>Logout</Button>
                             </NavItem>
                             <NavItem>
-                                <Button>Post</Button>
+                                <Button onClick={()=> {this.postOn()}}>Post</Button>
                             </NavItem>
                             <NavItem>
                                 <Button>Search</Button>
                             </NavItem>
                             <NavItem>
-                                <Button>Users</Button>
+                                <Button onClick={() => this.usersOn()}>Users</Button>
                             </NavItem>
                         </Nav>
                 </Navbar>
+                {this.state.getUsers ?
+                <Users 
+                usersOff={this.usersOff}
+                token={this.props.token}/> :
+                <PostIndex 
+                token={this.props.token}  
+                postOn={this.postOn}
+                postOff={this.postOff}
+                postActive={this.state.postActive}
+                />}
             </div>
         )
     }
