@@ -50,6 +50,7 @@ class CreatePost extends React.Component<Props, State> {
     render() {
         return (
             <div>
+                {/* important stuff */}
                <h3>create a Post</h3>
                <Form inline onSubmit={e => { e.preventDefault(); this.handleSubmit() }}>
                    <FormGroup>
