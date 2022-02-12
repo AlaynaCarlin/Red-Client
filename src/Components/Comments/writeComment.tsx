@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 import {Posts} from "../Posts/postIndex";
-import {Form, FormGroup, Input, Button} from 'reactstrap';
+import {Form, FormGroup, Input, Button, Label} from 'reactstrap';
 
 type Props = {
     token: string,
@@ -44,6 +44,7 @@ class WriteComment extends React.Component <Props,State> {
         return(
           <Form inline onSubmit={e => {e.preventDefault(); this.handelSubmit() }}>
               <FormGroup>
+                  <Label>write a comment</Label>
                   <Input value={this.state.content} onChange={(e) => this.setState({content: e.target.value})}/>
               </FormGroup>
               <Button type="submit">Comment</Button>

@@ -2,6 +2,7 @@ import React from "react";
 import { Posts } from "../Posts/postIndex";
 import { Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, Button, Col } from "reactstrap";
 import WriteComment from "./writeComment";
+import UpdateComment from "./updateComment";
 
 type Props = {
     commentPost: Posts,
@@ -12,12 +13,15 @@ type Props = {
 
 export interface Comments {
     id: string,
-    content: string
+    content: string,
+    postId: string
 }
 
 type State = {
     comments: Comments[],
-    post: Posts
+    post: Posts,
+    updateActive: boolean,
+    commentToUpdate: Comments
 }
 
 class CommentTable extends React.Component<Props, State> {
@@ -30,6 +34,12 @@ class CommentTable extends React.Component<Props, State> {
                 product: '',
                 brand: '',
                 content: ''
+            },
+            updateActive: false,
+            commentToUpdate: {
+                id: '',
+                content: '',
+                postId: ''
             }
         }
     }
@@ -61,27 +71,68 @@ class CommentTable extends React.Component<Props, State> {
         this.props.commentOff();
     }
 
+    deleteComment = (comment: Comments) => {
+        console.log('deleteComment');
+        fetch(`http://localhost:3000/comment/delete/${comment.id}`, {
+            method: 'DELETE',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.props.token}`
+            })
+        }).then(() => this.fetchComments())
+    }
+
     commentMapper = () => {
         console.log('comment mapper')
         return this.state.comments.map((comment: any, idx: number) => {
             return (
                 <Col key={idx}>
                     <p>{comment.content}</p>
+                    <Button onClick={() => this.deleteComment}>delete</Button>
+                    <Button onClick={() => {this.editUpdateComment(comment); this.updateOn()}}>edit</Button>
                 </Col>
             )
         }
-        )}
+        )
+    }
+
+    editUpdateComment = (comment: Comments) => {
+        this.setState({
+            commentToUpdate: comment,
+        })
+    }
+
+    updateOn = () => {
+        this.setState({
+            updateActive: true
+        })
+    }
+
+    updateOff = () => {
+        this.setState({
+            updateActive: false
+        })
+    }
 
     render() {
         console.log('render comments')
         return (
             <>
                 <Modal isOpen={true}>
-                    <ModalHeader>{this.state.post.product} - {this.state.post.brand} <br/> {this.state.post.content}</ModalHeader>
+                    <ModalHeader>{this.state.post.product} - {this.state.post.brand} <br /> {this.state.post.content}</ModalHeader>
                     <ModalBody>
                         <Col>{this.commentMapper()}</Col>
-                        <Label>Write a Comment</Label>
-                        <WriteComment token={this.props.token} fetchComments={this.fetchComments} post={this.state.post}/>
+                        {this.state.updateActive ?
+                            <UpdateComment
+                                token={this.props.token} 
+                                commentToUpdate={this.state.commentToUpdate}
+                                updateOff={this.updateOff}
+                                fetch={this.fetchComments}/> :
+                            <WriteComment
+                                token={this.props.token}
+                                fetchComments={this.fetchComments}
+                                post={this.state.post} />}
+
                         <Button onClick={this.close}>close</Button>
                     </ModalBody>
                 </Modal>
