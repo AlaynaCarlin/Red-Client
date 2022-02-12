@@ -1,5 +1,6 @@
 import React from "react";
 import Radium from "radium";
+import APIURL from "../../helpers/environment";
 import {Posts} from "../Posts/postIndex";
 import {Form, FormGroup, Input, Button, Label} from 'reactstrap';
 
@@ -25,7 +26,7 @@ class WriteComment extends React.Component <Props,State> {
     }
 
     handelSubmit = () => {
-        fetch('http://localhost:3000/comment/post', {
+        fetch(`${APIURL}/comment/post`, {
             method: 'POST',
             body: JSON.stringify({comment: {content: this.state.content, postId: this.props.post.id}}),
             headers: new Headers({

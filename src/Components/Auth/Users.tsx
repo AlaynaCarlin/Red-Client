@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Button, Table } from "reactstrap";
+import APIURL from "../../helpers/environment";
 
 
 type Props = {
@@ -35,7 +36,7 @@ class Users extends React.Component<Props, State> {
 
     fetchUsers = () => {
         console.log('fetch users', this.state.userArr);
-        fetch(`http://localhost:3000/user/`, {
+        fetch(`${APIURL}/user/`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -64,7 +65,7 @@ class Users extends React.Component<Props, State> {
 
     deleteUsers = (user: User) => {
         console.log('delete user');
-        fetch(`http://localhost:3000/user/delete/${user.id}`, {
+        fetch(`${APIURL}/user/delete/${user.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',

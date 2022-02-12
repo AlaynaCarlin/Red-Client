@@ -3,6 +3,7 @@ import { Posts } from "../Posts/postIndex";
 import { Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, Button, Col } from "reactstrap";
 import WriteComment from "./writeComment";
 import UpdateComment from "./updateComment";
+import APIURL from "../../helpers/environment";
 
 type Props = {
     commentPost: Posts,
@@ -51,7 +52,7 @@ class CommentTable extends React.Component<Props, State> {
 
     fetchComments = () => {
         console.log('fetch comments', this.props.commentPost.id)
-        fetch(`http://localhost:3000/post/${this.props.commentPost.id}`, {
+        fetch(`${APIURL}/post/${this.props.commentPost.id}`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -73,7 +74,7 @@ class CommentTable extends React.Component<Props, State> {
 
     deleteComment = (comment: Comments) => {
         console.log('deleteComment');
-        fetch(`http://localhost:3000/comment/delete/${comment.id}`, {
+        fetch(`${APIURL}/comment/delete/${comment.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',

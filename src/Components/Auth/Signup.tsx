@@ -1,5 +1,6 @@
 import React from "react";
 import Radium from "radium";
+import APIURL from "../../helpers/environment";
 import {
     Form,
     FormGroup,
@@ -45,7 +46,7 @@ class Signup extends React.Component<Props, State> {
         let errorCode: number | string
 
         console.log(this.state.username, this.state.admin, this.state.password)
-        fetch(`http://localhost:3000/user/signup`, {
+        fetch(`${APIURL}/user/signup`, {
             method: "POST",
             body: JSON.stringify({ users: { username: this.state.username, admin: this.state.admin, password: this.state.password } }),
             headers: new Headers({

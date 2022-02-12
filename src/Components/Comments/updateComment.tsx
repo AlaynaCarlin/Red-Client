@@ -1,5 +1,6 @@
 import React from "react";
 import Radium from "radium";
+import APIURL from "../../helpers/environment";
 import { Comments } from './commentTable';
 import {Form, FormGroup, Input, Button, Label} from 'reactstrap';
 
@@ -27,7 +28,7 @@ class UpdateComment extends React.Component<Props, State> {
     }
 
     commentUpdate = () => {
-        fetch(`http://localhost:3000/comment/update/${this.props.commentToUpdate.id}`, {
+        fetch(`${APIURL}/comment/update/${this.props.commentToUpdate.id}`, {
             method: 'PUT',
             body: JSON.stringify({comment: {content: this.state.content, postId: this.props.commentToUpdate.postId}}),
             headers: new Headers({
