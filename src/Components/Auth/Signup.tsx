@@ -15,14 +15,15 @@ import {
 import Login from "./Login";
 
 type Props = {
-    update: (newToken: string)=>void
+    update: (newToken: string)=>void,
+    toggleFunc: ()=>void
 }
 
 type State = {
     username: string,
     password: string,
     admin: boolean,
-    message: string
+    message: string,
 }
 
 class Signup extends React.Component<Props, State> {
@@ -32,7 +33,8 @@ class Signup extends React.Component<Props, State> {
             username: '',
             password: '',
             admin: false,
-            message: ''
+            message: '',
+            
         }
     }
 
@@ -123,7 +125,7 @@ class Signup extends React.Component<Props, State> {
 
                     </FormGroup>
                     <Button type="submit" disabled={!this.validPassword()}>Submit</Button>
-                    {/* <Button type="button" >Login</Button> */}
+                    <Button onClick={() => this.props.toggleFunc()} >Login</Button>
 
                 </Form>
             </div>

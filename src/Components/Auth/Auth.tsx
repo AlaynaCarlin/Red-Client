@@ -10,8 +10,8 @@ type Props = {
 
 type State = {
     // updated: any
-    hasError: boolean
-
+    hasError: boolean,
+    toggle: boolean
 }
 
 class Auth extends React.Component<Props, State> {
@@ -19,6 +19,7 @@ class Auth extends React.Component<Props, State> {
         super(props);
         this.state = { 
             hasError: false,
+            toggle: false
             // updated: props.tokenUpdate
          };
     }
@@ -33,6 +34,11 @@ class Auth extends React.Component<Props, State> {
         console.log(error, errorInfo);
     }
 
+    toggleFunc = () => {
+        this.setState({
+            toggle: !this.state.toggle
+        })
+    }
 
     render() {
         console.log('Auth render')
@@ -43,12 +49,17 @@ class Auth extends React.Component<Props, State> {
         return (
             <Container>
                 <Row>
-                    <Col md="6">
-                        <Signup  update = {this.props.tokenUpdate}/>
+                    <Col md='6'>
+                        {this.state.toggle ?
+                        <Signup update = {this.props.tokenUpdate} toggleFunc={this.toggleFunc}/> :
+                        <Login update = {this.props.tokenUpdate} toggleFunc={this.toggleFunc}/> }
+                    </Col>
+                    {/* <Col md="6">
+                        <Signup  }/>
                     </Col> 
                     <Col md="6">
-                        <Login update = {this.props.tokenUpdate}/>
-                    </Col>
+                        <Login }/>
+                    </Col> */}
                 </Row>
 
             </Container>

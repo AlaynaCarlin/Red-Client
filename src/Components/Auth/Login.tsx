@@ -14,13 +14,14 @@ import {
 } from "reactstrap";
 
 type Props = {
-    update: any
+    update: any,
+    toggleFunc: ()=>void
 }
 
 type State = {
     username: string,
     password: string,
-    sessionToken: any
+    sessionToken: any,
 }
 
 class Login extends React.Component<Props, State> {
@@ -75,6 +76,7 @@ class Login extends React.Component<Props, State> {
                         <br />
                     </FormGroup>
                     <Button type="submit" >Submit</Button>
+                    <Button onClick={() => this.props.toggleFunc()}>Signup</Button>
                 </Form>
             </div>
         )
