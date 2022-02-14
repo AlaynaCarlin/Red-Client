@@ -145,8 +145,8 @@ class PostIndex extends React.Component<Props, State> {
                     tokenUpdate={this.props.tokenUpdate}
                     postOn={this.postOn} /> */}
                 <Container>
-                    <Row>
-                        <Col md='3'>
+                    <Col>
+                        <Row md='3'>
                             {this.props.postActive ?
                                 <CreatePost
                                     token={this.props.token}
@@ -154,8 +154,8 @@ class PostIndex extends React.Component<Props, State> {
                                     postOff={this.props.postOff}/> :
                                 <></>
                             }
-                        </Col>
-                        <Col md='9'>
+                        </Row>
+                        <Row md='9'>
                             <PostTable
                                 setPosts={this.setPosts}
                                 postArray={this.state.posts}
@@ -166,8 +166,8 @@ class PostIndex extends React.Component<Props, State> {
                                 setCommentPost={this.setCommentPost}
                                 commentOn={this.commentOn}
                             />
-                        </Col>
-                    </Row>
+                        </Row>
+                    </Col>
                     {this.state.updateActive ?
                         <UpdatePost
                             postToUpdate={this.state.postToUpdate}

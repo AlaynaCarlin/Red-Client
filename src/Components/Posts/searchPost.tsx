@@ -1,9 +1,23 @@
 import React from "react";
-import Radium from "radium";
+// import Radium from "radium";
+import {Posts} from "./postIndex";
 
-class SearchPost extends React.Component <{},any> {
-    constructor(props:any){
+type Props = {
+
+}
+
+type State = {
+    searchPosts: Posts[],
+    searchTerm: string
+}
+
+class SearchPost extends React.Component <Props,State> {
+    constructor(props:Props){
         super(props)
+        this.state = {
+            searchPosts: [],
+            searchTerm: ''
+        }
     }
 
     componentDidMount=()=>{
@@ -19,4 +33,4 @@ class SearchPost extends React.Component <{},any> {
     }
 }
 
-export default Radium(SearchPost);
+export default SearchPost;
