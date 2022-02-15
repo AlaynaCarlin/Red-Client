@@ -56,7 +56,7 @@ class Login extends React.Component<Props, State> {
         return (
             <div>
                 <h3>login</h3>
-                <Form inline onSubmit={e => { e.preventDefault(); this.handleSubmit() }}>
+                <Form inline onSubmit={e => { e.preventDefault(); this.handleSubmit(); }}>
                     <FormGroup floating>
                         <Input
                             type="text"

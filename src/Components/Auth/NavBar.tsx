@@ -1,8 +1,8 @@
 import React from "react";
-import Radium from "radium";
-import Login from "./Login";
+// import Radium from "radium";
 import Users from "./Users";
 import PostIndex from "../Posts/postIndex";
+import { Route, Link, Routes } from "react-router-dom";
 import {
     Collapse,
     Navbar,
@@ -44,10 +44,10 @@ class NavBar extends React.Component<Props, State> {
         };
     }
 
-    static getDerivedStateFromError(error:any) {
+    static getDerivedStateFromError(error: any) {
         // Update state so the next render will show the fallback UI.
         return { hasError: true };
-      }
+    }
 
     componentDidCatch(error: any, errorInfo: any) {
         console.log(error, errorInfo);
@@ -92,36 +92,44 @@ class NavBar extends React.Component<Props, State> {
         if (this.state.hasError) {
             // You can render any custom fallback UI
             return <h1>Something went wrong.</h1>;
-          }
+        }
         return (
             <div>
                 <Navbar color="light" light expand="md">
                     <NavbarBrand href="/">Class&Sass</NavbarBrand>
-                        <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <Button onClick={this.props.clickLogout}>Logout</Button>
-                            </NavItem>
-                            <NavItem>
-                                <Button onClick={()=> {this.postOn()}}>Post</Button>
-                            </NavItem>
-                            <NavItem>
-                                <Button>Search</Button>
-                            </NavItem>
-                            <NavItem>
-                                <Button onClick={() => this.usersOn()}>Users</Button>
-                            </NavItem>
-                        </Nav>
+                    <Nav className="ml-auto" navbar>
+                        <NavItem>
+                            <Button onClick={this.props.clickLogout}>Logout</Button>
+                        </NavItem>
+                        <NavItem>
+                            <Button onClick={() => { this.postOn() }}>Post</Button>
+                        </NavItem>
+                        <NavItem>
+                            <Button>Search</Button>
+                        </NavItem>
+                        <NavItem>
+                            <Button onClick={() => this.usersOn()}>Users</Button>
+                        </NavItem>
+                        {/* <NavItem>
+                            <Button><Link to='/users'>Users</Link></Button>
+                        </NavItem> */}
+                    </Nav>
                 </Navbar>
+                {/* <div>
+                    <Routes>
+                        <Route exact path="/users" element={<Users/>}/>
+                    </Routes>
+                </div> */}
                 {this.state.getUsers ?
-                <Users 
-                usersOff={this.usersOff}
-                token={this.props.token}/> :
-                <PostIndex 
-                token={this.props.token}  
-                postOn={this.postOn}
-                postOff={this.postOff}
-                postActive={this.state.postActive}
-                />}
+                    <Users
+                        usersOff={this.usersOff}
+                        token={this.props.token} /> :
+                    <PostIndex
+                        token={this.props.token}
+                        postOn={this.postOn}
+                        postOff={this.postOff}
+                        postActive={this.state.postActive}
+                    />}
             </div>
         )
     }

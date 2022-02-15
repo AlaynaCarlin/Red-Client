@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import Radium from 'radium';
+import { useEffect, useState } from 'react';
+// import Radium from 'radium';
 import Auth from "./Components/Auth/Auth";
-import PostIndex from './Components/Posts/postIndex';
 import NavBar from './Components/Auth/NavBar';
 import './App.css';
+import { BrowserRouter as Router } from "react-router-dom";
 
 
 var styles = {
@@ -37,7 +37,9 @@ useEffect(() => {
     console.log('protected views');
     // storage();
     return sessionToken === localStorage.getItem("token") ? (
+      <Router>
       <NavBar token={sessionToken} clickLogout={clearToken} tokenUpdate={updateToken}/>
+      </Router>
     ) : (
       <Auth tokenUpdate={updateToken} />
     )
