@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 }
 
 .App-header {
@@ -15,4 +17,43 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.splash {
+  background-attachment: fixed;
+  background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.205), rgba(253, 255, 255, 0.322)), url(./assets/simple\ and\ pink.jpg) ;
+  text-shadow: 2px 2px 5px white;
+  background-size: cover;
+  height: 100vh;
+  min-width: 100vw;
+  text-align: center;
+}
+
+#splashForm {
+  margin-top: 20vh;
+  width:60vw ;
+  display: block;
+  padding: 10px;
+  margin-left: 20vw;
+  margin-right: 20vw;
+  font-size:x-large;
+  color:#000000
+}
+
+#splashBtn{
+  background-color: rgb(147, 101, 290);
+  margin: 2vw;
+}
+
+.rando{
+  /* purple */
+  background-color: rgb(147, 101, 290);
+  /* lighter Pink */
+  background-color: rgb(205, 89, 205);
+  /* darker pink */
+  background-color: rgb(184, 55, 184);
+  /* light blue */
+  background-color: rgb(154, 154, 230);
+  /* darker blue */
+  background-color: rgb(78, 78, 194);
 }

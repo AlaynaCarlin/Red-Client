@@ -47,19 +47,13 @@ class Auth extends React.Component<Props, State> {
             return <h1>Something went wrong.</h1>;
         }
         return (
-            <Container>
+            <Container className="splash">
                 <Row>
-                    <Col md='6'>
+                    <Col>
                         {this.state.toggle ?
                         <Signup update = {this.props.tokenUpdate} toggleFunc={this.toggleFunc}/> :
                         <Login update = {this.props.tokenUpdate} toggleFunc={this.toggleFunc}/> }
                     </Col>
-                    {/* <Col md="6">
-                        <Signup  }/>
-                    </Col> 
-                    <Col md="6">
-                        <Login }/>
-                    </Col> */}
                 </Row>
 
             </Container>

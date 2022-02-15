@@ -54,9 +54,9 @@ class Login extends React.Component<Props, State> {
     render() {
         console.log('login render')
         return (
-            <div>
-                <h3>login</h3>
-                <Form inline onSubmit={e => { e.preventDefault(); this.handleSubmit(); }}>
+            <div >
+                <Form onSubmit={e => { e.preventDefault(); this.handleSubmit(); }} id="splashForm">
+                    <Label>Login</Label>
                     <FormGroup floating>
                         <Input
                             type="text"
@@ -75,8 +75,8 @@ class Login extends React.Component<Props, State> {
                         />
                         <br />
                     </FormGroup>
-                    <Button type="submit" >Submit</Button>
-                    <Button onClick={() => this.props.toggleFunc()}>Signup</Button>
+                    <Button id="splashBtn" type="submit" >Submit</Button>
+                    <Button  id="splashBtn" onClick={() => this.props.toggleFunc()}>Signup</Button>
                 </Form>
             </div>
         )

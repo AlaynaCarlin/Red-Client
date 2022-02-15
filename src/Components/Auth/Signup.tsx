@@ -91,7 +91,7 @@ class Signup extends React.Component<Props, State> {
         return (
             <div>
                 <h3>Signup</h3>
-                <Form inline onSubmit={e => { e.preventDefault(); this.handelSubmit() }}>
+                <Form inline onSubmit={e => { e.preventDefault(); this.handelSubmit() }} id='splashForm'>
                     <FormGroup floating>
                         <Input
                             type="text"
@@ -125,8 +125,8 @@ class Signup extends React.Component<Props, State> {
                         </FormFeedback>
 
                     </FormGroup>
-                    <Button type="submit" disabled={!this.validPassword()}>Submit</Button>
-                    <Button onClick={() => this.props.toggleFunc()} >Login</Button>
+                    <Button id="splashBtn" type="submit" disabled={!this.validPassword()}>Submit</Button>
+                    <Button id="splashBtn" onClick={() => this.props.toggleFunc()} >Login</Button>
 
                 </Form>
             </div>

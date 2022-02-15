@@ -49,7 +49,7 @@ useEffect(() => {
 
   console.log('app render')
   return (
-    <div className="App">
+    <div className='App'>
       {/* <NavBar clickLogout={clearToken} tokenUpdate={updateToken}/> */}
      {protectedViews()}
      {/* <Auth tokenUpdate={updateToken}/> */}
