@@ -126,7 +126,7 @@ class Signup extends React.Component<Props, State> {
 
                     </FormGroup>
                     <Button id="splashBtn" type="submit" disabled={!this.validPassword()}>Submit</Button>
-                    <Button id="splashBtn" onClick={() => this.props.toggleFunc()} >Login</Button>
+                    <Button id="splashBtn" onClick={() => this.props.toggleFunc()} >Go to Login</Button>
 
                 </Form>
             </div>

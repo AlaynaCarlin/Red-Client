@@ -76,7 +76,7 @@ class Login extends React.Component<Props, State> {
                         <br />
                     </FormGroup>
                     <Button id="splashBtn" type="submit" >Submit</Button>
-                    <Button  id="splashBtn" onClick={() => this.props.toggleFunc()}>Signup</Button>
+                    <Button  id="splashBtn" onClick={() => this.props.toggleFunc()}>Go to Signup</Button>
                 </Form>
             </div>
         )
