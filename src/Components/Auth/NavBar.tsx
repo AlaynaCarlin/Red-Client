@@ -29,6 +29,7 @@ type State = {
     hasError: boolean,
     getUsers: boolean,
     postActive: boolean,
+    searchActive: boolean
     // postOn: ()=>void,
 }
 
@@ -40,7 +41,8 @@ class NavBar extends React.Component<Props, State> {
             isOpen: false,
             hasError: false,
             getUsers: false,
-            postActive: false
+            postActive: false,
+            searchActive:false
         };
     }
 
@@ -87,6 +89,20 @@ class NavBar extends React.Component<Props, State> {
             postActive: false
         })
     }
+    // !==========
+    
+    searchOn = () =>{
+        this.setState({
+            searchActive: true
+        })
+    }
+    
+    searchOff = () => {
+        this.setState({
+            searchActive: false
+        })
+    } 
+
 
     render() {
         if (this.state.hasError) {
@@ -105,7 +121,7 @@ class NavBar extends React.Component<Props, State> {
                             <Button onClick={() => { this.postOn() }}>Post</Button>
                         </NavItem>
                         <NavItem>
-                            <Button>Search</Button>
+                            <Button onClick={() => {this.searchOn() }}>Search</Button>
                         </NavItem>
                         <NavItem>
                             <Button onClick={() => this.usersOn()}>Users</Button>
@@ -126,9 +142,10 @@ class NavBar extends React.Component<Props, State> {
                         token={this.props.token} /> :
                     <PostIndex
                         token={this.props.token}
-                        postOn={this.postOn}
                         postOff={this.postOff}
                         postActive={this.state.postActive}
+                        searchOff={this.searchOff}
+                        searchActive={this.state.searchActive}
                     />}
             </div>
         )

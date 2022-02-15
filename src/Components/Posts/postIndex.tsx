@@ -7,15 +7,15 @@ import PostTable from "./postTable";
 import searchPost from "./searchPost";
 import UpdatePost from "./updatePost";
 import CommentTable from "../Comments/commentTable";
+import SearchPost from "./searchPost";
 
 
 type Props = {
     token: string,
-    postOn:()=>void,
     postOff:()=>void,
-    postActive: boolean
-    // clickLogout: ()=>void,
-    // tokenUpdate: ()=>void
+    postActive: boolean,
+    searchOff: ()=>void,
+    searchActive: boolean
 }
 
 /*  I need my variables in an interface so that I have access to the Posts interface,
@@ -128,9 +128,7 @@ class PostIndex extends React.Component<Props, State> {
     }
     // !=======
 
-    
-   
-   
+// ! ==========
 
     setPosts = (searchItem: string) => {
         let filtered = this.state.posts.filter((i: Posts) => i.product.includes(searchItem))
@@ -141,11 +139,17 @@ class PostIndex extends React.Component<Props, State> {
         console.log('postIndex render');
         return (
             <div>
-                {/* <NavBar clickLogout={this.props.clickLogout}
-                    tokenUpdate={this.props.tokenUpdate}
-                    postOn={this.postOn} /> */}
                 <Container>
                     <Col>
+                    <Row md='3'>
+                            {this.props.searchActive ?
+                                <SearchPost
+                                    token={this.props.token}
+                                    setPosts={this.setPosts} 
+                                    searchOff={this.props.searchOff}/> :
+                                <></>
+                            }
+                        </Row>
                         <Row md='3'>
                             {this.props.postActive ?
                                 <CreatePost
