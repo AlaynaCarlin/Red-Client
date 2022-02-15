@@ -16,5 +16,7 @@
 * -[2/10/2022]: worked on comment table 
 * -[2/11/2022]: comment modal is displaying correctly, write/update/delete comments function
 * -[2/12/2022]: restructured the display, admin delete users working, client deployed to heroku
+* -[2/14/2022]: styling, added toggle between signup and login
+* -[2/15/2022]: styled splash page
 
 
