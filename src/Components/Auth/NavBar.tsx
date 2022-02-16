@@ -2,6 +2,7 @@ import React from "react";
 // import Radium from "radium";
 import Users from "./Users";
 import PostIndex from "../Posts/postIndex";
+import Auth from "./Auth";
 import { Route, Link, Routes } from "react-router-dom";
 import {
     Collapse,
@@ -10,17 +11,12 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
     Button
 } from "reactstrap";
 
 interface Props {
-    clickLogout: any,
-    tokenUpdate: any,
+    clickLogout: ()=>void,
+    tokenUpdate: (newToken: string)=>void,
     token: string
 }
 
@@ -111,11 +107,11 @@ class NavBar extends React.Component<Props, State> {
         }
         return (
             <div>
-                <Navbar color="light" light expand="md">
+                <Navbar color="light" light expand='md' className="nav">
                     <NavbarBrand href="/">Class&Sass</NavbarBrand>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <Button onClick={this.props.clickLogout}>Logout</Button>
+                            <Button onClick={()=>this.props.clickLogout()}>Logout</Button>
                         </NavItem>
                         <NavItem>
                             <Button onClick={() => { this.postOn() }}>Post</Button>
@@ -124,22 +120,21 @@ class NavBar extends React.Component<Props, State> {
                             <Button onClick={() => {this.searchOn() }}>Search</Button>
                         </NavItem>
                         <NavItem>
-                            <Button onClick={() => this.usersOn()}>Users</Button>
+                            <Button onClick={() => this.usersOn()}><Link to='/users'>Users</Link></Button>
                         </NavItem>
-                        {/* <NavItem>
-                            <Button><Link to='/users'>Users</Link></Button>
-                        </NavItem> */}
+                        <NavItem>
+                            <Button><Link to='/home'>Home</Link></Button>
+                        </NavItem>
                     </Nav>
                 </Navbar>
-                {/* <div>
+                <div>
                     <Routes>
-                        <Route exact path="/users" element={<Users/>}/>
+                        <Route path='/users' element={<Users usersOff={this.usersOff} token={this.props.token}/>}/>
+                        <Route path='/home' element={<PostIndex token={this.props.token} postOff={this.postOff} postActive={this.state.postActive} searchOff={this.searchOff} searchActive={this.state.searchActive}/>}/>
                     </Routes>
-                </div> */}
+                </div>
                 {this.state.getUsers ?
-                    <Users
-                        usersOff={this.usersOff}
-                        token={this.props.token} /> :
+                    <></> :
                     <PostIndex
                         token={this.props.token}
                         postOff={this.postOff}

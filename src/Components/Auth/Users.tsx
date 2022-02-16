@@ -77,9 +77,10 @@ class Users extends React.Component<Props, State> {
     render() {
         return (
             <>
-                <h3>users</h3>
                 <hr />
                 <Table striped>
+                {/* <h3>users</h3> */}
+                {/* <Button onClick={() => {this.props.usersOff()}}>Close</Button> */}
                     <thead>
                         <tr>
                             <th>User Name</th>
