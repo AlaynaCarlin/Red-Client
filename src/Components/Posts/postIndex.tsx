@@ -139,7 +139,7 @@ class PostIndex extends React.Component<Props, State> {
         console.log('postIndex render');
         return (
             <div>
-                <Container>
+                <Container className="postIndex">
                     <Col>
                     <Row md='3'>
                             {this.props.searchActive ?

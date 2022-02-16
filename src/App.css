@@ -50,6 +50,17 @@
   margin: 2vw;
 }
 
+/* .nav{
+  position: fixed !important;
+  width: 100%;
+} */
+
+.postIndex{
+  /* margin-top: 2vh; */
+  /* padding-top: 10vh; */
+  position: relative;
+}
+
 .rando{
   /* purple */
   background-color: rgb(147, 101, 290);
