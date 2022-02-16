@@ -146,7 +146,8 @@ class PostIndex extends React.Component<Props, State> {
                                 <SearchPost
                                     token={this.props.token}
                                     setPosts={this.setPosts} 
-                                    searchOff={this.props.searchOff}/> :
+                                    searchOff={this.props.searchOff}
+                                    reFetch={this.fetchPosts}/> :
                                 <></>
                             }
                         </Row>

@@ -45,7 +45,7 @@ class WriteComment extends React.Component <Props,State> {
         return(
           <Form inline onSubmit={e => {e.preventDefault(); this.handelSubmit() }}>
               <FormGroup>
-                  <Label>write a comment</Label>
+                  <h5>write a comment</h5>
                   <Input value={this.state.content} onChange={(e) => this.setState({content: e.target.value})}/>
               </FormGroup>
               <Button type="submit">Comment</Button>

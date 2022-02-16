@@ -41,11 +41,16 @@ class UpdateComment extends React.Component<Props, State> {
         })
     }
 
+    close = () => {
+        this.props.updateOff();
+    }
+
     render() {
         return (
             <Form inline onSubmit={e => {e.preventDefault(); this.commentUpdate() }}>
             <FormGroup>
-                <Label>update Comment</Label>
+                <h5>update Comment</h5> 
+                <Button onClick={() => this.close()}>Update Off</Button>
                 <Input value={this.state.content} onChange={(e) => this.setState({content: e.target.value})}/>
             </FormGroup>
             <Button type="submit">Comment</Button>

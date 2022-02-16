@@ -6,7 +6,8 @@ import {Input, Button, Form} from 'reactstrap';
 type Props = {
     token: string,
     setPosts: (searchItem: string)=>void,
-    searchOff: ()=>void
+    searchOff: ()=>void,
+    reFetch: ()=>void
 }
 
 type State = {
@@ -27,15 +28,16 @@ class SearchPost extends React.Component <Props,State> {
     }
 
     handleChange = () => {
-        this.props.setPosts(this.state.searchTerm)
+        this.props.setPosts(this.state.searchTerm);
+        this.setState({
+            searchTerm: ''
+        })
     }
 
-    // searchFilter = () => {
-    //     let searchObjects = this.props.posts.filter(posts => posts.product.includes(this.state.searchTerm));
-    //     this.setState({
-    //         searchPosts: searchObjects
-    //     })
-    // }
+    close = () => {
+        this.props.searchOff();
+        this.props.reFetch();
+    }
 
     render(){
         return(
@@ -44,6 +46,7 @@ class SearchPost extends React.Component <Props,State> {
                 <h4>Search for a Post</h4>
                 <Input onChange={(e) => this.setState({searchTerm: e.target.value})}/>
                 <Button type="submit">Search</Button>
+                <Button onClick={()=> this.close()}>Close</Button>
                 </Form>
             </div>
         )

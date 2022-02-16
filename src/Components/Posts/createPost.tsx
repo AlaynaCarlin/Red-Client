@@ -47,6 +47,10 @@ class CreatePost extends React.Component<Props, State> {
 
     }
 
+    close = () => {
+        this.props.postOff();
+    }
+
     render() {
         return (
             <div>
@@ -66,6 +70,7 @@ class CreatePost extends React.Component<Props, State> {
                        <Input name="content" value={this.state.content} onChange={(e) => this.setState({content: e.target.value})}/>
                    </FormGroup>
                    <Button type='submit'>Click to Submit</Button>
+                   <Button onClick={() => this.close()}>Close</Button>
                </Form>
             </div>
         )
