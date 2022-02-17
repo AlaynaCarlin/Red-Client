@@ -2,7 +2,8 @@
 [client for Class & Sass makeup review app. Users can leave reviews for makeup products they have tried and search other user's posts.]
 
 # Alayna M Carlin
-[github](https://github.com/AlaynaCarlin), [linkedIn](https://www.linkedin.com/in/alayna-carlin-865326221/), [portfolio](https://github.com/AlaynaCarlin/AlaynaCarlin.github.io.git)
+[github](https://github.com/AlaynaCarlin), [linkedIn](https://www.linkedin.com/in/alayna-carlin-865326221/), [portfolio](https://alaynacarlin.github.io/
+)
  
 * -[1/29/2022]: built out file structure
 * -[1/31/2022]: installed Radium, started building signup component
@@ -18,6 +19,6 @@
 * -[2/12/2022]: restructured the display, admin delete users working, client deployed to heroku
 * -[2/14/2022]: styling, added toggle between signup and login
 * -[2/15/2022]: styled splash page, got search component functioning, added buttons
-* -[2/16/2022]: implemented React-Router-Dom
+* -[2/16/2022]: implemented React-Router-Dom, styled home page
 
 
