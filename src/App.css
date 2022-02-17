@@ -1,7 +1,9 @@
 .App {
   text-align: center;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
+  font-family:'Times New Roman', Times, serif;
+  /* font-family: akaDora; */
+  /* font-weight:bold; */
+  overflow-x: hidden;
 }
 
 .App-header {
@@ -55,10 +57,17 @@
   border: none;
   padding: 5px;
   margin: 5px;
-  color: rgb(255, 255, 255);
-  /* box-shadow: 0 0 2px 2px #ccc;
-  border: rgba(154, 154, 230, 0.678) 1px; */
-  /* text-decoration: ; */
+  color: rgb(77, 28, 117);
+  font-size: 15px;
+}
+
+#Btns2{
+  background-color: rgb(147, 101, 290, .0);
+  border: none;
+  padding: 5px;
+  margin: 5px;
+  color: rgb(77, 28, 117);
+  font-size: 15px;
 }
 
 .postIndex{
@@ -92,6 +101,14 @@
   overflow: auto;
   min-height: 100%;
   min-width: 100%;
+}
+
+.postForm{
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  padding: 5px;
+  width: 80vw;
 }
 
 .rando{

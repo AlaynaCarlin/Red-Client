@@ -65,8 +65,8 @@ class PostTable extends React.Component<Props, State> {
                     <div>
                         <List type="unstyled">
                             <ul className="posts">
-                                <li>{post.product} from {post.brand}</li>
-                                <li style={{fontSize: 'small'}}>{post.content}</li>
+                                <li style={{fontSize: '25px'}}>{post.product} from {post.brand}:</li>
+                                <li style={{fontSize: '20px'}}>{post.content}</li>
                                {} 
                                 <Button id="Btns" onClick={() => { this.props.editUpdatePost(post); this.props.updateOn() }}>update</Button>
                                 <Button id="Btns" onClick={() => { this.deletePost(post) }}>Delete</Button>

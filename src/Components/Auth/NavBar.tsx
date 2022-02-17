@@ -122,10 +122,10 @@ class NavBar extends React.Component<Props, State> {
                                 <Button id="Btns" onClick={() => { this.searchOn() }}>Search</Button>
                             </NavItem>
                             <NavItem>
-                                <Button id="Btns" onClick={() => this.usersOn()}><Link id="Btns" style={{ textDecoration: 'none', }} to='/users'>Users</Link></Button>
+                                <Button id="Btns" onClick={() => this.usersOn()}><Link id="Btns2" style={{ textDecoration: 'none', }} to='/users'>Users</Link></Button>
                             </NavItem>
                             <NavItem>
-                                <Button id="Btns"><Link id="Btns" to='/home'>Home</Link></Button>
+                                <Button id="Btns"><Link style={{}} id="Btns2" to='/home'>Home</Link></Button>
                             </NavItem>
                         </Nav>
                     </Collapse>
