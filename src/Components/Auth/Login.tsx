@@ -1,6 +1,7 @@
 import React from "react";
 import Radium from "radium";
 import APIURL from "../../helpers/environment";
+import {User} from './Users';
 import {
     Form,
     FormGroup,
@@ -15,13 +16,15 @@ import {
 
 type Props = {
     update: any,
-    toggleFunc: ()=>void
+    toggleFunc: ()=>void,
+    // currentUser: User
 }
 
 type State = {
     username: string,
     password: string,
-    sessionToken: any,
+    sessionToken: string,
+    
 }
 
 class Login extends React.Component<Props, State> {
@@ -30,7 +33,8 @@ class Login extends React.Component<Props, State> {
         this.state = {
             username: '',
             password: '',
-            sessionToken: ''
+            sessionToken: '',
+            
         }
     }
 
@@ -48,6 +52,9 @@ class Login extends React.Component<Props, State> {
             console.log(data);
             console.log(this.props.update);
             this.props.update(data.sessionToken);
+            this.setState({
+                
+            })
             })
     }
 
@@ -56,6 +63,7 @@ class Login extends React.Component<Props, State> {
         return (
             <div >
                 <Form onSubmit={e => { e.preventDefault(); this.handleSubmit(); }} id="splashForm">
+                    <h2>Class & Sass</h2>
                     <Label>Login</Label>
                     <FormGroup floating>
                         <Input
@@ -75,8 +83,8 @@ class Login extends React.Component<Props, State> {
                         />
                         <br />
                     </FormGroup>
-                    <Button id="splashBtn" type="submit" >Submit</Button>
                     <Button  id="splashBtn" onClick={() => this.props.toggleFunc()}>Go to Signup</Button>
+                    <Button id="splashBtn" type="submit" >Login</Button>
                 </Form>
             </div>
         )

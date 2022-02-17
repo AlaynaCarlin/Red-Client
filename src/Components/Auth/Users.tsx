@@ -15,7 +15,8 @@ type State = {
 
 export interface User {
     id: string,
-    username: string
+    username: string,
+    admin: boolean
 }
 
 class Users extends React.Component<Props, State> {
@@ -53,11 +54,12 @@ class Users extends React.Component<Props, State> {
 
     usersMapper = () => {
         console.log('user mapper')
-        return this.state.userArr.map((user: any, idx: number) => {
+        return this.state.userArr.map((user: User, idx: number) => {
             return (
                 <tr key={idx}>
                     <td>{user.username}</td>
-                    <td><Button onClick={() => {this.deleteUsers(user)}}>Delete</Button></td>
+                    {/* <td>{user.admin}</td> */}
+                    <td><Button id="Btns" onClick={() => {this.deleteUsers(user)}}>Delete</Button></td>
                 </tr>
             )
         })
@@ -76,21 +78,22 @@ class Users extends React.Component<Props, State> {
 
     render() {
         return (
-            <>
+            <div className="users">
                 <hr />
+                <h3>users</h3>
                 <Table striped>
-                {/* <h3>users</h3> */}
                 {/* <Button onClick={() => {this.props.usersOff()}}>Close</Button> */}
                     <thead>
                         <tr>
                             <th>User Name</th>
+                            {/* <th>Admin</th> */}
                         </tr>
                     </thead>
                     <tbody>
                         {this.usersMapper()}
                     </tbody>
                 </Table>
-            </>
+            </div>
         )
     }
 }

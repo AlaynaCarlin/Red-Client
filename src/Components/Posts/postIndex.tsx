@@ -35,6 +35,7 @@ export interface Posts {
     product: string,
     brand: string,
     content: string,
+    userId: string
 }
 
 class PostIndex extends React.Component<Props, State> {
@@ -48,13 +49,15 @@ class PostIndex extends React.Component<Props, State> {
                 id: '',
                 product: '',
                 brand: '',
-                content: ''
+                content: '',
+                userId: ''
             },
             commentPost: {
                 id: '',
                 product: '',
                 brand: '',
-                content: ''
+                content: '',
+                userId: ''
             },
             commentActive: false,
             
@@ -138,8 +141,8 @@ class PostIndex extends React.Component<Props, State> {
     render() {
         console.log('postIndex render');
         return (
-            <div>
-                <Container className="postIndex">
+            <div className="postIndex">
+                <Container >
                     <Col>
                     <Row md='3'>
                             {this.props.searchActive ?

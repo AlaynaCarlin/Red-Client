@@ -20,7 +20,7 @@ type Props = {
 }
 
 type State = {
-    isSpecific: false,
+    isSpecific: boolean,
     searchArr: [],
     value: [],
     postProps: {},
@@ -29,8 +29,12 @@ type State = {
 class PostTable extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
-        this.setState({postProps: this.props.postArray})
-        // console.log('hit post table')
+        this.state={
+            isSpecific: false,
+            searchArr: [],
+            value: [],
+            postProps: this.props.postArray,
+        }
     }
 
     deletePost = (post: Posts) => {
@@ -60,13 +64,13 @@ class PostTable extends React.Component<Props, State> {
                 <Col key={idx}>
                     <div>
                         <List type="unstyled">
-                            <ul>
-                                <li>Product: {post.product}</li>
-                                <li>Brand: {post.brand}</li>
-                                <li>{post.content}</li>
-                                <Button onClick={() => { this.props.editUpdatePost(post); this.props.updateOn() }}>update</Button>
-                                <Button onClick={() => { this.deletePost(post) }}>Delete</Button>
-                                <Button onClick={() => { this.props.setCommentPost(post); this.props.commentOn() }}>Comments</Button>
+                            <ul className="posts">
+                                <li>{post.product} from {post.brand}</li>
+                                <li style={{fontSize: 'small'}}>{post.content}</li>
+                               {} 
+                                <Button id="Btns" onClick={() => { this.props.editUpdatePost(post); this.props.updateOn() }}>update</Button>
+                                <Button id="Btns" onClick={() => { this.deletePost(post) }}>Delete</Button>
+                                <Button id="Btns" onClick={() => { this.props.setCommentPost(post); this.props.commentOn() }}>Comments</Button>
                             </ul>
                         </List>
                     </div>
@@ -84,7 +88,7 @@ class PostTable extends React.Component<Props, State> {
                 <h3>Recent Reviews</h3>
                 <hr />
 
-                <Row xs="2" md="3" xl="6" style={{ overflow: "scroll", height: "100vh" }}>
+                <Row xs="2" md="3" xl="5" style={{ overflow: "scroll", height: "100vh" }}>
                     {this.postMapper()}
                 </Row>
 

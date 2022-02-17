@@ -34,7 +34,8 @@ class CommentTable extends React.Component<Props, State> {
                 id: '',
                 product: '',
                 brand: '',
-                content: ''
+                content: '',
+                userId: ''
             },
             updateActive: false,
             commentToUpdate: {

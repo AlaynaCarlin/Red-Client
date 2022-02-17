@@ -4,6 +4,8 @@ import Auth from "./Components/Auth/Auth";
 import NavBar from './Components/Auth/NavBar';
 import './App.css';
 import { BrowserRouter as Router } from "react-router-dom";
+import { stringify } from 'querystring';
+import { User } from './Components/Auth/Users';
 
 
 var styles = {
@@ -13,6 +15,7 @@ var styles = {
 
 function App() {
  const [sessionToken, setSessionToken] = useState('');
+ const [currentUser, setCurrentUser] = useState({});
 
 useEffect(() => {
   if (localStorage.getItem("token")) {
@@ -41,9 +44,9 @@ useEffect(() => {
       <NavBar token={sessionToken} clickLogout={clearToken} tokenUpdate={updateToken}/>
       </Router>
     ) : (
-      <Auth tokenUpdate={updateToken} />
-    )
-    
+      <Auth tokenUpdate={updateToken}  />
+      )
+    // currentUser={currentUser}
   }
 
 

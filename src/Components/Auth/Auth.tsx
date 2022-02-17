@@ -3,15 +3,17 @@ import React from "react";
 import Signup from "./Signup";
 import { Container, Row, Col } from 'reactstrap';
 import Login from "./Login";
+import {User} from "./Users";
 
 type Props = {
     tokenUpdate: (newToken: string)=>void,
+    // currentUser: User 
 }
 
 type State = {
     // updated: any
     hasError: boolean,
-    toggle: boolean
+    toggle: boolean,
 }
 
 class Auth extends React.Component<Props, State> {
@@ -51,8 +53,9 @@ class Auth extends React.Component<Props, State> {
                 <Row>
                     <Col>
                         {this.state.toggle ?
-                        <Signup update = {this.props.tokenUpdate} toggleFunc={this.toggleFunc}/> :
-                        <Login update = {this.props.tokenUpdate} toggleFunc={this.toggleFunc}/> }
+                        <Login update = {this.props.tokenUpdate} toggleFunc={this.toggleFunc} /> :
+                        // currentUser={this.props.currentUser}
+                        <Signup update = {this.props.tokenUpdate} toggleFunc={this.toggleFunc} /> }
                     </Col>
                 </Row>
 

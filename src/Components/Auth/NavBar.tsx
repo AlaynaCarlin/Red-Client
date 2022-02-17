@@ -15,8 +15,8 @@ import {
 } from "reactstrap";
 
 interface Props {
-    clickLogout: ()=>void,
-    tokenUpdate: (newToken: string)=>void,
+    clickLogout: () => void,
+    tokenUpdate: (newToken: string) => void,
     token: string
 }
 
@@ -34,11 +34,11 @@ class NavBar extends React.Component<Props, State> {
         super(props)
         this.toggle = this.toggle.bind(this);
         this.state = {
-            isOpen: false,
+            isOpen: true,
             hasError: false,
             getUsers: false,
             postActive: false,
-            searchActive:false
+            searchActive: false
         };
     }
 
@@ -86,18 +86,18 @@ class NavBar extends React.Component<Props, State> {
         })
     }
     // !==========
-    
-    searchOn = () =>{
+
+    searchOn = () => {
         this.setState({
             searchActive: true
         })
     }
-    
+
     searchOff = () => {
         this.setState({
             searchActive: false
         })
-    } 
+    }
 
 
     render() {
@@ -107,30 +107,33 @@ class NavBar extends React.Component<Props, State> {
         }
         return (
             <div>
-                <Navbar color="light" light expand='md' className="nav">
+                <Navbar color="light" light expand='md'>
                     <NavbarBrand href="/">Class&Sass</NavbarBrand>
-                    <Nav className="ml-auto" navbar>
-                        <NavItem>
-                            <Button onClick={()=>this.props.clickLogout()}>Logout</Button>
-                        </NavItem>
-                        <NavItem>
-                            <Button onClick={() => { this.postOn() }}>Post</Button>
-                        </NavItem>
-                        <NavItem>
-                            <Button onClick={() => {this.searchOn() }}>Search</Button>
-                        </NavItem>
-                        <NavItem>
-                            <Button onClick={() => this.usersOn()}><Link to='/users'>Users</Link></Button>
-                        </NavItem>
-                        <NavItem>
-                            <Button><Link to='/home'>Home</Link></Button>
-                        </NavItem>
-                    </Nav>
+                    <NavbarToggler onClick={this.toggle} size="sm" />
+                    <Collapse isOpen={this.state.isOpen}>
+                        <Nav className="ml-auto" navbar>
+                            <NavItem>
+                                <Button id="Btns" onClick={() => this.props.clickLogout()}>Logout</Button>
+                            </NavItem>
+                            <NavItem>
+                                <Button id="Btns" onClick={() => { this.postOn() }}>Post</Button>
+                            </NavItem>
+                            <NavItem>
+                                <Button id="Btns" onClick={() => { this.searchOn() }}>Search</Button>
+                            </NavItem>
+                            <NavItem>
+                                <Button id="Btns" onClick={() => this.usersOn()}><Link id="Btns" style={{ textDecoration: 'none', }} to='/users'>Users</Link></Button>
+                            </NavItem>
+                            <NavItem>
+                                <Button id="Btns"><Link id="Btns" to='/home'>Home</Link></Button>
+                            </NavItem>
+                        </Nav>
+                    </Collapse>
                 </Navbar>
                 <div>
                     <Routes>
-                        <Route path='/users' element={<Users usersOff={this.usersOff} token={this.props.token}/>}/>
-                        <Route path='/home' element={<PostIndex token={this.props.token} postOff={this.postOff} postActive={this.state.postActive} searchOff={this.searchOff} searchActive={this.state.searchActive}/>}/>
+                        <Route path='/users' element={<Users usersOff={this.usersOff} token={this.props.token} />} />
+                        <Route path='/home' element={<PostIndex token={this.props.token} postOff={this.postOff} postActive={this.state.postActive} searchOff={this.searchOff} searchActive={this.state.searchActive} />} />
                     </Routes>
                 </div>
                 {this.state.getUsers ?

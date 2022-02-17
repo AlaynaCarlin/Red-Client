@@ -13,10 +13,12 @@ import {
     List,
 } from "reactstrap";
 import Login from "./Login";
+import {User} from './Users';
 
 type Props = {
     update: (newToken: string)=>void,
-    toggleFunc: ()=>void
+    toggleFunc: ()=>void,
+    // currentUSer: User
 }
 
 type State = {
@@ -73,6 +75,9 @@ class Signup extends React.Component<Props, State> {
                 console.log(data);
                 console.log(this.props.update);
                 this.props.update(data.sessionToken);
+                this.setState({
+                    // this.props.currentUser: data.user.id
+                })
             })
     };
 
@@ -90,8 +95,9 @@ class Signup extends React.Component<Props, State> {
         console.log('signup render')
         return (
             <div>
-                <h3>Signup</h3>
                 <Form inline onSubmit={e => { e.preventDefault(); this.handelSubmit() }} id='splashForm'>
+                    <h2>Class & Sass</h2>
+                <Label>Signup</Label>
                     <FormGroup floating>
                         <Input
                             type="text"
@@ -125,8 +131,8 @@ class Signup extends React.Component<Props, State> {
                         </FormFeedback>
 
                     </FormGroup>
-                    <Button id="splashBtn" type="submit" disabled={!this.validPassword()}>Submit</Button>
                     <Button id="splashBtn" onClick={() => this.props.toggleFunc()} >Go to Login</Button>
+                    <Button id="splashBtn" type="submit" disabled={!this.validPassword()}>Submit</Button>
 
                 </Form>
             </div>
