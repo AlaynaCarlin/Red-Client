@@ -18,6 +18,6 @@
 * -[2/12/2022]: restructured the display, admin delete users working, client deployed to heroku
 * -[2/14/2022]: styling, added toggle between signup and login
 * -[2/15/2022]: styled splash page, got search component functioning, added buttons
-* -[2/16/2022]: implemented React-Router-Dom
+* -[2/16/2022]: implemented React-Router-Dom, styled home page
 
 
