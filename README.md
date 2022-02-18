@@ -1,5 +1,10 @@
 # Class & Sass Client
-[client for Class & Sass makeup review app. Users can leave reviews for makeup products they have tried and search other user's posts.]
+Client for Class & Sass makeup review app. Users can leave reviews for makeup products they have tried and search other user's posts.
+
+Technology Used:
+
+              React, TypeScript, ReactStrap
+
 
 # Alayna M Carlin
 [github](https://github.com/AlaynaCarlin), [linkedIn](https://www.linkedin.com/in/alayna-carlin-865326221/), [portfolio](https://alaynacarlin.github.io/
