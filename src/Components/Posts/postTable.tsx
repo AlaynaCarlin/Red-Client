@@ -1,22 +1,19 @@
 import React from "react";
 // import Radium from "radium";
 import APIURL from "../../helpers/environment";
-import { Table, Button, Row, Col, List } from 'reactstrap';
+import { Button, Row, Col, List } from 'reactstrap';
 import 'infinite-scroll';
 import { Posts } from "./postIndex";
-// import { logRoles } from "@testing-library/react";
 
 type Props = {
     fetch: () => void,
-    // ! issue
     postArray: object[],
     token: string,
     setPosts: (searchItem: string) => void,
     editUpdatePost: (post: Posts) => void,
     updateOn: () => void,
-    setCommentPost: (post: Posts)=>void,
-    commentOn: ()=>void
-    // scrollMore: any
+    setCommentPost: (post: Posts) => void,
+    commentOn: () => void
 }
 
 type State = {
@@ -29,7 +26,7 @@ type State = {
 class PostTable extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
-        this.state={
+        this.state = {
             isSpecific: false,
             searchArr: [],
             value: [],
@@ -54,10 +51,7 @@ class PostTable extends React.Component<Props, State> {
     }
 
     postMapper = () => {
-        // this.props.fetch();
         console.log('postMapper');
-        // console.log(this.props.postArray)
-        // console.log(this.state.postProps)
 
         return this.props.postArray.map((post: any, idx: number) => {
             return (
@@ -65,9 +59,8 @@ class PostTable extends React.Component<Props, State> {
                     <div>
                         <List type="unstyled">
                             <ul className="posts">
-                                <li style={{fontSize: '25px'}}>{post.product} from {post.brand}:</li>
-                                <li style={{fontSize: '20px'}}>{post.content}</li>
-                               {} 
+                                <li style={{ fontSize: '25px' }}>{post.product} from {post.brand}:</li>
+                                <li style={{ fontSize: '20px' }}>{post.content}</li>
                                 <Button id="Btns" onClick={() => { this.props.editUpdatePost(post); this.props.updateOn() }}>update</Button>
                                 <Button id="Btns" onClick={() => { this.deletePost(post) }}>Delete</Button>
                                 <Button id="Btns" onClick={() => { this.props.setCommentPost(post); this.props.commentOn() }}>Comments</Button>

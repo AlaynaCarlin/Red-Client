@@ -1,25 +1,21 @@
 import React from "react";
-import Radium from "radium";
+// import Radium from "radium";
 import APIURL from "../../helpers/environment";
 import { Container, Row, Col, } from "reactstrap";
 import CreatePost from "./createPost";
 import PostTable from "./postTable";
-import searchPost from "./searchPost";
 import UpdatePost from "./updatePost";
 import CommentTable from "../Comments/commentTable";
 import SearchPost from "./searchPost";
 
-
 type Props = {
     token: string,
-    postOff:()=>void,
+    postOff: () => void,
     postActive: boolean,
-    searchOff: ()=>void,
+    searchOff: () => void,
     searchActive: boolean
 }
 
-/*  I need my variables in an interface so that I have access to the Posts interface,
-  but my app won't read the value of any of the variables */
 type State = {
     posts: Posts[],
     error: boolean,
@@ -27,7 +23,6 @@ type State = {
     postToUpdate: Posts,
     commentPost: Posts,
     commentActive: boolean,
-    
 }
 
 export interface Posts {
@@ -60,13 +55,9 @@ class PostIndex extends React.Component<Props, State> {
                 userId: ''
             },
             commentActive: false,
-            
         };
-        // console.log(this.state.posts)
     }
 
-
-    // ! divider ****************************************
     componentDidMount() {
         console.log('component did mount')
         this.fetchPosts()
@@ -131,8 +122,6 @@ class PostIndex extends React.Component<Props, State> {
     }
     // !=======
 
-// ! ==========
-
     setPosts = (searchItem: string) => {
         let filtered = this.state.posts.filter((i: Posts) => i.product.includes(searchItem))
         this.setState({ posts: filtered })
@@ -144,13 +133,13 @@ class PostIndex extends React.Component<Props, State> {
             <div className="postIndex">
                 <Container >
                     <Col>
-                    <Row md='3'>
+                        <Row md='3'>
                             {this.props.searchActive ?
                                 <SearchPost
                                     token={this.props.token}
-                                    setPosts={this.setPosts} 
+                                    setPosts={this.setPosts}
                                     searchOff={this.props.searchOff}
-                                    reFetch={this.fetchPosts}/> :
+                                    reFetch={this.fetchPosts} /> :
                                 <></>
                             }
                         </Row>
@@ -158,8 +147,8 @@ class PostIndex extends React.Component<Props, State> {
                             {this.props.postActive ?
                                 <CreatePost
                                     token={this.props.token}
-                                    fetch={this.fetchPosts} 
-                                    postOff={this.props.postOff}/> :
+                                    fetch={this.fetchPosts}
+                                    postOff={this.props.postOff} /> :
                                 <></>
                             }
                         </Row>

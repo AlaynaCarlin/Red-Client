@@ -1,6 +1,6 @@
 import React from "react";
 import { Posts } from "../Posts/postIndex";
-import { Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, Button, Col, Row } from "reactstrap";
+import { Modal, ModalBody, ModalHeader, Button, Col, Row } from "reactstrap";
 import WriteComment from "./writeComment";
 import UpdateComment from "./updateComment";
 import APIURL from "../../helpers/environment";
@@ -9,7 +9,6 @@ type Props = {
     commentPost: Posts,
     commentOff: () => void,
     token: string,
-
 }
 
 export interface Comments {
@@ -86,12 +85,12 @@ class CommentTable extends React.Component<Props, State> {
 
     commentMapper = () => {
         console.log('comment mapper')
-        return this.state.comments.map((comment: any, idx: number) => {
+        return this.state.comments.map((comment: Comments, idx: number) => {
             return (
                 <Row key={idx} className='comment'>
                     <Col id="col1"><p>{comment.content}</p></Col>
-                    <Col style={{textAlign: 'right'}}><Button id="Btns" onClick={() => this.deleteComment(comment)}>delete</Button>
-                    <Button id="Btns" onClick={() => {this.editUpdateComment(comment); this.updateOn()}}>edit</Button></Col>
+                    <Col style={{ textAlign: 'right' }}><Button id="Btns" onClick={() => this.deleteComment(comment)}>delete</Button>
+                        <Button id="Btns" onClick={() => { this.editUpdateComment(comment); this.updateOn() }}>edit</Button></Col>
                 </Row>
             )
         }
@@ -126,17 +125,17 @@ class CommentTable extends React.Component<Props, State> {
                         <Col>{this.commentMapper()}</Col>
                         {this.state.updateActive ?
                             <UpdateComment
-                                token={this.props.token} 
+                                token={this.props.token}
                                 commentToUpdate={this.state.commentToUpdate}
                                 updateOff={this.updateOff}
-                                fetch={this.fetchComments}/> :
+                                fetch={this.fetchComments} /> :
                             <WriteComment
                                 token={this.props.token}
                                 fetchComments={this.fetchComments}
                                 post={this.state.post} />}
 
                         <Button id="Btns" onClick={this.close}>close</Button>
-                        
+
                     </ModalBody>
                 </Modal>
             </>

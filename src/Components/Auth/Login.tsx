@@ -1,30 +1,24 @@
 import React from "react";
-import Radium from "radium";
+// import Radium from "radium";
 import APIURL from "../../helpers/environment";
-import {User} from './Users';
 import {
     Form,
     FormGroup,
     Label,
     Input,
     Button,
-    FormFeedback,
-    FormText,
-    Container,
-    List,
 } from "reactstrap";
 
 type Props = {
-    update: any,
-    toggleFunc: ()=>void,
-    // currentUser: User
+    update: (newToken: string) => void,
+    toggleFunc: () => void,
 }
 
 type State = {
     username: string,
     password: string,
     sessionToken: string,
-    
+
 }
 
 class Login extends React.Component<Props, State> {
@@ -34,7 +28,7 @@ class Login extends React.Component<Props, State> {
             username: '',
             password: '',
             sessionToken: '',
-            
+
         }
     }
 
@@ -48,14 +42,14 @@ class Login extends React.Component<Props, State> {
                 'Content-Type': 'application/json'
             })
         }).then((response) => response.json()
-        ) .then((data) => {
+        ).then((data) => {
             console.log(data);
             console.log(this.props.update);
             this.props.update(data.sessionToken);
             this.setState({
-                
+
             })
-            })
+        })
     }
 
     render() {
@@ -85,7 +79,7 @@ class Login extends React.Component<Props, State> {
                         />
                         <br />
                     </FormGroup>
-                    <Button  id="splashBtn" onClick={() => this.props.toggleFunc()}>Go to Signup</Button>
+                    <Button id="splashBtn" onClick={() => this.props.toggleFunc()}>Go to Signup</Button>
                     <Button id="splashBtn" type="submit" >Login</Button>
                 </Form>
             </div>

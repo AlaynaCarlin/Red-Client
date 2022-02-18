@@ -1,7 +1,7 @@
 import React from "react";
-import Radium from "radium";
+// import Radium from "radium";
 import APIURL from "../../helpers/environment";
-import { Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
+import { Button, Form, Input, Row, Col } from 'reactstrap';
 
 type Props = {
     token: string,
@@ -44,7 +44,6 @@ class CreatePost extends React.Component<Props, State> {
                 this.props.fetch();
                 this.props.postOff();
             })
-
     }
 
     close = () => {
@@ -54,8 +53,6 @@ class CreatePost extends React.Component<Props, State> {
     render() {
         return (
             <div>
-                {/* important stuff */}
-
                 <Form inline onSubmit={e => { e.preventDefault(); this.handleSubmit() }} className="postForm">
                     <Row xs='1' md="4" xl="5">
                         <Col>

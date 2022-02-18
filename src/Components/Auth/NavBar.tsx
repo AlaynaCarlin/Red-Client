@@ -1,8 +1,7 @@
-import React from "react";
+import React, { ErrorInfo } from "react";
 // import Radium from "radium";
 import Users from "./Users";
 import PostIndex from "../Posts/postIndex";
-import Auth from "./Auth";
 import { Route, Link, Routes } from "react-router-dom";
 import {
     Collapse,
@@ -26,7 +25,6 @@ type State = {
     getUsers: boolean,
     postActive: boolean,
     searchActive: boolean
-    // postOn: ()=>void,
 }
 
 class NavBar extends React.Component<Props, State> {
@@ -42,12 +40,12 @@ class NavBar extends React.Component<Props, State> {
         };
     }
 
-    static getDerivedStateFromError(error: any) {
+    static getDerivedStateFromError(error: number | string) {
         // Update state so the next render will show the fallback UI.
         return { hasError: true };
     }
 
-    componentDidCatch(error: any, errorInfo: any) {
+    componentDidCatch(error: Error, errorInfo: ErrorInfo) {
         console.log(error, errorInfo);
     }
 
@@ -56,10 +54,6 @@ class NavBar extends React.Component<Props, State> {
         this.setState({
             isOpen: !this.state.isOpen
         });
-    }
-
-    componentDidMount = () => {
-
     }
 
     usersOn = () => {

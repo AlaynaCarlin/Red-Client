@@ -1,5 +1,5 @@
 import React from "react";
-import Radium from "radium";
+// import Radium from "radium";
 import APIURL from "../../helpers/environment";
 import {
     Form,
@@ -9,16 +9,12 @@ import {
     Button,
     FormFeedback,
     FormText,
-    Container,
     List,
 } from "reactstrap";
-import Login from "./Login";
-import {User} from './Users';
 
 type Props = {
-    update: (newToken: string)=>void,
-    toggleFunc: ()=>void,
-    // currentUSer: User
+    update: (newToken: string) => void,
+    toggleFunc: () => void,
 }
 
 type State = {
@@ -36,16 +32,11 @@ class Signup extends React.Component<Props, State> {
             password: '',
             admin: false,
             message: '',
-            
+
         }
     }
 
-    componentDidMount = () => {
-
-    }
-
     handelSubmit = () => {
-        // e.preventDefault();
         console.log(' signup handel submit')
         let errorCode: number | string
 
@@ -97,7 +88,7 @@ class Signup extends React.Component<Props, State> {
             <div>
                 <Form inline onSubmit={e => { e.preventDefault(); this.handelSubmit() }} id='splashForm'>
                     <h2>Class & Sass</h2>
-                <Label>Signup</Label>
+                    <Label>Signup</Label>
                     <FormGroup >
                         <Input
                             bsSize="lg"

@@ -4,24 +4,15 @@ import Auth from "./Components/Auth/Auth";
 import NavBar from './Components/Auth/NavBar';
 import './App.css';
 import { BrowserRouter as Router } from "react-router-dom";
-import { stringify } from 'querystring';
-import { User } from './Components/Auth/Users';
-
-
-var styles = {
- 
-};
-
 
 function App() {
- const [sessionToken, setSessionToken] = useState('');
- const [currentUser, setCurrentUser] = useState({});
+  const [sessionToken, setSessionToken] = useState('');
 
-useEffect(() => {
-  if (localStorage.getItem("token")) {
-    setSessionToken(localStorage.getItem("token") || '');
-  }
-}, []);
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setSessionToken(localStorage.getItem("token") || '');
+    }
+  }, []);
 
   const updateToken = (newToken: string) => {
     console.log('updateToken');
@@ -38,25 +29,20 @@ useEffect(() => {
 
   const protectedViews = () => {
     console.log('protected views');
-    // storage();
     return sessionToken === localStorage.getItem("token") ? (
       <Router>
-      <NavBar token={sessionToken} clickLogout={clearToken} tokenUpdate={updateToken}/>
+        <NavBar token={sessionToken} clickLogout={clearToken} tokenUpdate={updateToken} />
       </Router>
     ) : (
-      <Auth tokenUpdate={updateToken}  />
-      )
-    // currentUser={currentUser}
+      <Auth tokenUpdate={updateToken} />
+    )
   }
 
 
   console.log('app render')
   return (
     <div className='App'>
-      {/* <NavBar clickLogout={clearToken} tokenUpdate={updateToken}/> */}
-     {protectedViews()}
-     {/* <Auth tokenUpdate={updateToken}/> */}
-     {/* <PostIndex token={sessionToken}/> */}
+      {protectedViews()}
     </div>
   );
 }

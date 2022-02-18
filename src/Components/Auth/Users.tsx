@@ -1,7 +1,6 @@
 import React from "react";
-import { Container, Row, Col, Button, Table } from "reactstrap";
+import { Button, Table } from "reactstrap";
 import APIURL from "../../helpers/environment";
-
 
 type Props = {
     token: string,
@@ -10,7 +9,6 @@ type Props = {
 
 type State = {
     userArr: User[],
-    // delUser: User
 }
 
 export interface User {
@@ -24,10 +22,6 @@ class Users extends React.Component<Props, State> {
         super(props)
         this.state = {
             userArr: [],
-            // delUser:  {
-            //     id: '',
-            //     username: ''
-            // }
         }
     }
 
@@ -58,8 +52,7 @@ class Users extends React.Component<Props, State> {
             return (
                 <tr key={idx}>
                     <td>{user.username}</td>
-                    {/* <td>{user.admin}</td> */}
-                    <td><Button id="Btns" onClick={() => {this.deleteUsers(user)}}>Delete</Button></td>
+                    <td><Button id="Btns" onClick={() => { this.deleteUsers(user) }}>Delete</Button></td>
                 </tr>
             )
         })
@@ -73,7 +66,7 @@ class Users extends React.Component<Props, State> {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${this.props.token}`
             })
-        }) .then(() => this.fetchUsers())
+        }).then(() => this.fetchUsers())
     }
 
     render() {
@@ -82,11 +75,9 @@ class Users extends React.Component<Props, State> {
                 <hr />
                 <h3>users</h3>
                 <Table striped>
-                {/* <Button onClick={() => {this.props.usersOff()}}>Close</Button> */}
                     <thead>
                         <tr>
                             <th>User Name</th>
-                            {/* <th>Admin</th> */}
                         </tr>
                     </thead>
                     <tbody>
