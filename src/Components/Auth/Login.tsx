@@ -65,8 +65,9 @@ class Login extends React.Component<Props, State> {
                 <Form onSubmit={e => { e.preventDefault(); this.handleSubmit(); }} id="splashForm">
                     <h2>Class & Sass</h2>
                     <Label>Login</Label>
-                    <FormGroup floating>
+                    <FormGroup >
                         <Input
+                            bsSize="lg"
                             type="text"
                             placeholder="Username"
                             onChange={(e) => this.setState({ username: e.target.value })}
@@ -74,8 +75,9 @@ class Login extends React.Component<Props, State> {
                         />
                     </FormGroup>
                     <br />
-                    <FormGroup floating>
+                    <FormGroup >
                         <Input
+                            bsSize="lg"
                             type="password"
                             placeholder="Password"
                             onChange={(e) => this.setState({ password: e.target.value })}

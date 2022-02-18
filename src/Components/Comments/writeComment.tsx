@@ -48,7 +48,7 @@ class WriteComment extends React.Component <Props,State> {
                   <h5>write a comment</h5>
                   <Input value={this.state.content} onChange={(e) => this.setState({content: e.target.value})}/>
               </FormGroup>
-              <Button type="submit">Comment</Button>
+              <Button id="Btns" type="submit">Post Comment</Button>
           </Form>
         )
     }

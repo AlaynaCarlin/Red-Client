@@ -55,22 +55,23 @@ class CreatePost extends React.Component<Props, State> {
         return (
             <div>
                 {/* important stuff */}
-                            <h3 style={{}}>create a Post</h3>
+
                 <Form inline onSubmit={e => { e.preventDefault(); this.handleSubmit() }} className="postForm">
-                    <Row xs='1' md="3" xl="6">
+                    <Row xs='1' md="4" xl="5">
                         <Col>
-                                <Input name="product" value={this.state.product} onChange={(e) => this.setState({ product: e.target.value })} placeholder="product" />
+                            <h3 style={{}}>create a Post</h3>
                         </Col>
                         <Col>
-                                <Input name="brand" value={this.state.brand} onChange={(e) => this.setState({ brand: e.target.value })} placeholder="brand" />
+                            <Input name="product" value={this.state.product} onChange={(e) => this.setState({ product: e.target.value })} placeholder="product" />
                         </Col>
                         <Col>
-                                <Input name="content" value={this.state.content} onChange={(e) => this.setState({ content: e.target.value })} placeholder='content'/>
+                            <Input name="brand" value={this.state.brand} onChange={(e) => this.setState({ brand: e.target.value })} placeholder="brand" />
+                        </Col>
+                        <Col>
+                            <Input name="content" value={this.state.content} onChange={(e) => this.setState({ content: e.target.value })} placeholder='content' />
                         </Col>
                         <Col>
                             <Button id="Btns" type='submit'>Click to Submit</Button>
-                        </Col>
-                        <Col>
                             <Button id="Btns" onClick={() => this.close()}>Close</Button>
                         </Col>
                     </Row>

@@ -1,7 +1,7 @@
 import React from "react";
 // import Radium from "radium";
 import {Posts} from "./postIndex";
-import {Input, Button, Form} from 'reactstrap';
+import {Input, Button, Form, Row, Col} from 'reactstrap';
 
 type Props = {
     token: string,
@@ -42,11 +42,19 @@ class SearchPost extends React.Component <Props,State> {
     render(){
         return(
             <div>
-                <Form onSubmit={e => { e.preventDefault(); this.handleChange()}}> 
+                <Form onSubmit={e => { e.preventDefault(); this.handleChange()}} className='search'>  
+                <Row xs="1" md='3' xl='3'>
+                    <Col>
                 <h4>Search for a Post</h4>
-                <Input onChange={(e) => this.setState({searchTerm: e.target.value})}/>
-                <Button type="submit">Search</Button>
-                <Button onClick={()=> this.close()}>Close</Button>
+                </Col>
+                <Col>
+                <Input placeholder="search " onChange={(e) => this.setState({searchTerm: e.target.value})}/>
+                </Col>
+                <Col>
+                <Button id="Btns" type="submit">Search</Button>
+                <Button id="Btns" onClick={()=> this.close()}>Close</Button>
+                </Col>
+                </Row>
                 </Form>
             </div>
         )

@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 import APIURL from "../../helpers/environment";
 import { Comments } from './commentTable';
-import {Form, FormGroup, Input, Button, Label} from 'reactstrap';
+import {Form, FormGroup, Input, Button, Label, Row, Col} from 'reactstrap';
 
 type Props = {
     token: string,
@@ -49,11 +49,17 @@ class UpdateComment extends React.Component<Props, State> {
         return (
             <Form inline onSubmit={e => {e.preventDefault(); this.commentUpdate() }}>
             <FormGroup>
-                <h5>update Comment</h5> 
-                <Button onClick={() => this.close()}>Update Off</Button>
+                <Row>
+                    <Col>
+                <h5>update Comment</h5>
+                 </Col>
+                 <Col>
+                <Button id="Btns" style={{textAlign: 'right'}} onClick={() => this.close()}>Close Edit</Button>
+                </Col>
+                </Row>
                 <Input value={this.state.content} onChange={(e) => this.setState({content: e.target.value})}/>
             </FormGroup>
-            <Button type="submit">Comment</Button>
+            <Button id="Btns" type="submit">Update</Button>
         </Form>
         )
     }

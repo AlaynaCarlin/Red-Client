@@ -90,6 +90,7 @@
   box-shadow: 0 0 5px 5px #ccc;
   list-style-type:none;
   padding: 5px;
+  /* height: 30vh; */
 }
 
 .users{
@@ -109,6 +110,27 @@
   margin: 10px;
   padding: 5px;
   width: 80vw;
+}
+
+.comment{
+  border: rgba(154, 154, 230, 0.678) 2px;
+  border-radius: 0;
+  box-shadow: 0 0 3px 3px #ccc;
+  margin: 10px;
+}
+
+#col1{
+  width: 500px;
+}
+
+.search{
+  margin: 10px;
+  padding: 5px;
+  width: 80vw;
+}
+
+.modal{
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .rando{

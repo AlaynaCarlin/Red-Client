@@ -52,7 +52,7 @@ class UpdatePost extends React.Component <Props,State> {
 
     render(){
         return(
-            <Modal isOpen={true}>
+            <Modal  isOpen={true} >
                 <ModalHeader>Update your Post</ModalHeader>
                 <ModalBody>
                     <Form inline onSubmit={e => {e.preventDefault(); this.postUpdate() }}>
@@ -68,8 +68,8 @@ class UpdatePost extends React.Component <Props,State> {
                             <Label htmlFor="content">Edit Content:</Label>
                             <Input name="content" value={this.state.editContent} onChange={(e) => this.setState({editContent: e.target.value})} />
                         </FormGroup>
-                        <Button type="submit">Update your Post!</Button>
-                        <Button type="reset" onClick={this.close}>close</Button>
+                        <Button id="Btns" type="submit">Update your Post!</Button>
+                        <Button id="Btns" type="reset" onClick={this.close}>close</Button>
                     </Form>
                 </ModalBody>
             </Modal>

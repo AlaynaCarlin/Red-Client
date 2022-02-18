@@ -1,6 +1,6 @@
 import React from "react";
 import { Posts } from "../Posts/postIndex";
-import { Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, Button, Col } from "reactstrap";
+import { Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, Button, Col, Row } from "reactstrap";
 import WriteComment from "./writeComment";
 import UpdateComment from "./updateComment";
 import APIURL from "../../helpers/environment";
@@ -88,11 +88,11 @@ class CommentTable extends React.Component<Props, State> {
         console.log('comment mapper')
         return this.state.comments.map((comment: any, idx: number) => {
             return (
-                <Col key={idx}>
-                    <p>{comment.content}</p>
-                    <Button onClick={() => this.deleteComment(comment)}>delete</Button>
-                    <Button onClick={() => {this.editUpdateComment(comment); this.updateOn()}}>edit</Button>
-                </Col>
+                <Row key={idx} className='comment'>
+                    <Col id="col1"><p>{comment.content}</p></Col>
+                    <Col style={{textAlign: 'right'}}><Button id="Btns" onClick={() => this.deleteComment(comment)}>delete</Button>
+                    <Button id="Btns" onClick={() => {this.editUpdateComment(comment); this.updateOn()}}>edit</Button></Col>
+                </Row>
             )
         }
         )
@@ -135,7 +135,8 @@ class CommentTable extends React.Component<Props, State> {
                                 fetchComments={this.fetchComments}
                                 post={this.state.post} />}
 
-                        <Button onClick={this.close}>close</Button>
+                        <Button id="Btns" onClick={this.close}>close</Button>
+                        
                     </ModalBody>
                 </Modal>
             </>
