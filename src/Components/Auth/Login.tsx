@@ -46,9 +46,6 @@ class Login extends React.Component<Props, State> {
             console.log(data);
             console.log(this.props.update);
             this.props.update(data.sessionToken);
-            this.setState({
-
-            })
         })
     }
 
@@ -79,8 +76,8 @@ class Login extends React.Component<Props, State> {
                         />
                         <br />
                     </FormGroup>
-                    <Button id="splashBtn" onClick={() => this.props.toggleFunc()}>Go to Signup</Button>
-                    <Button id="splashBtn" type="submit" >Login</Button>
+                    <Button id="Btns" onClick={() => this.props.toggleFunc()}>Go to Signup</Button>
+                    <Button id="Btns" type="submit" >Login</Button>
                 </Form>
             </div>
         )

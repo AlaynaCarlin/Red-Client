@@ -66,9 +66,6 @@ class Signup extends React.Component<Props, State> {
                 console.log(data);
                 console.log(this.props.update);
                 this.props.update(data.sessionToken);
-                this.setState({
-                    // this.props.currentUser: data.user.id
-                })
             })
     };
 
@@ -124,8 +121,8 @@ class Signup extends React.Component<Props, State> {
                         </FormFeedback>
 
                     </FormGroup>
-                    <Button id="splashBtn" onClick={() => this.props.toggleFunc()} >Go to Login</Button>
-                    <Button id="splashBtn" type="submit" disabled={!this.validPassword()}>Submit</Button>
+                    <Button id="Btns" onClick={() => this.props.toggleFunc()} >Go to Login</Button>
+                    <Button id="Btns" type="submit" disabled={!this.validPassword()}>Submit</Button>
 
                 </Form>
             </div>
