@@ -43,6 +43,7 @@ class Signup extends React.Component<Props, State> {
         console.log(this.state.username, this.state.admin, this.state.password)
         console.log(APIURL);
         fetch(`${APIURL}/user/signup`, {
+            mode: 'no-cors',
             method: "POST",
             body: JSON.stringify({ users: { username: this.state.username, admin: this.state.admin, password: this.state.password } }),
             headers: new Headers({
