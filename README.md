@@ -1,5 +1,5 @@
 # Class & Sass Client
-Client for Class & Sass makeup review app. Users can leave reviews for makeup products they have tried and search other user's posts. This is the app [Class&Sass}(https://amc-class-and-sass-client.herokuapp.com/)
+Client for Class & Sass makeup review app. Users can leave reviews for makeup products they have tried and search other user's posts. This is the app [Class&Sass](https://amc-class-and-sass-client.herokuapp.com/)
 
 Technology Used:
 
